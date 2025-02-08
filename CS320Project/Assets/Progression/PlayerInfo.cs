@@ -1,6 +1,6 @@
-using UnityEngine
+using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class PlayerInfo : MonoBehaviour
 {
     //placeholder class for various player factors (health, damage, speed, etc)
 
