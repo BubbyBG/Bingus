@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePosition: {x: 0, y: 0, z: 0.2}
   baseAngle: {x: 0, y: 96.32, z: 0}
+  guiSprite: {fileID: 21300000, guid: be9a202dd673848439fd9247afe84534, type: 3}
 --- !u!1001 &2022705797662871459
 PrefabInstance:
   m_ObjectHideFlags: 0

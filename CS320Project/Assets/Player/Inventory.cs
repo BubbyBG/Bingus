@@ -9,7 +9,14 @@ public class Inventory : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (inventorySlot[i] != null)
+            {
+                ItemClass item = inventorySlot[i].GetComponent<ItemClass>();
+                item.held = true;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -30,10 +37,22 @@ public class Inventory : MonoBehaviour
             if (inventorySlot[i] == null)
             {
                 inventorySlot[i] = itemToAdd;
+                ItemClass item = inventorySlot[i].GetComponent<ItemClass>();
+                item.held = true;
                 return;
             }
         }
         print("Inventory is full");
+        return;
+    }
+
+    public void DropItem(int slotNumber) //when the player drops something up ingame
+    {
+        if (inventorySlot[slotNumber] != null)
+        {
+            GameObject droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
+            inventorySlot[slotNumber] = null;
+        }
         return;
     }
 }
