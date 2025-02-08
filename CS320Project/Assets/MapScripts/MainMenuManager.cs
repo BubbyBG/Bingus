@@ -8,12 +8,20 @@ public class MainMenuManager : MonoBehaviour
     public Button optionsButton;
     public Button quitButton;
 
+    public Transform target;
+    public Camera mainCamera;
+
     void Start()
     {   
+        if (mainCamera != null && target!=null){
+            mainCamera.transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
+            mainCamera.transform.LookAt(target);
+        }
+
         Debug.Log("Main Menu Manager started!");
         if(startButton != null && optionsButton != null && quitButton != null){
             startButton.onClick.AddListener(StartGame);
-            startButton.onClick.AddListener(OpenOptions);
+            optionsButton.onClick.AddListener(OpenOptions);
             quitButton.onClick.AddListener(QuitGame);
         }
         else{
