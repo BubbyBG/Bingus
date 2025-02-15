@@ -7,6 +7,7 @@ public class ItemClass : MonoBehaviour //This is the parent of weapons and usabl
     public Vector3 baseAngle;
     public Sprite guiSprite;
     public bool held; //Not in an inventory
+    public string itemName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
