@@ -43,16 +43,31 @@ public class Inventory : MonoBehaviour
             }
         }
         print("Inventory is full");
-        return;
     }
 
     public void DropItem(int slotNumber) //when the player drops something up ingame
     {
         if (inventorySlot[slotNumber] != null)
         {
-            GameObject droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
+            GameObject _droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
+            ItemClass droppedItem = _droppedItem.GetComponent<ItemClass>();
+            droppedItem.held = false;
             inventorySlot[slotNumber] = null;
         }
-        return;
     }
+
+    public GameObject RemoveItem(int slotNumber) //when the player drops something up ingame
+    {
+        if (inventorySlot[slotNumber] != null)
+        {
+            GameObject _removedItem = inventorySlot[slotNumber];
+            inventorySlot[slotNumber] = null;
+            return _removedItem;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }

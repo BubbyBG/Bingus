@@ -81,3 +81,4 @@ MonoBehaviour:
   baseAngle: {x: -13.79, y: -99.31, z: -6.8}
   guiSprite: {fileID: 21300000, guid: 2d2bc8b40b0328f45a1e8b56df581143, type: 3}
   held: 1
+  itemName: Trollbox
