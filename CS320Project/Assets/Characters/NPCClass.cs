@@ -57,7 +57,7 @@ public class NPCClass : MonoBehaviour
             }
 
             //Transition to pathing/travelling (Going to Destination)
-            else if(Vector3.Distance(travelDestination, NPCLocation) > NPCRadius;)
+            else if(Vector3.Distance(travelDestination, NPCLocation) > NPCRadius)
             {
                 if(!(pathingState || travellingState))
                 {
