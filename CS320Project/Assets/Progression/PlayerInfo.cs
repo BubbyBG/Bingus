@@ -1,20 +1,36 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
+
 public class PlayerInfo : MonoBehaviour
 {
     public int maxRange = 100;
-    public int healthThreshold = 100; // base starting health value
+    public GameObject deathScreen;
+    private CanvasGroup deathCanvasGroup;
+
+
+    public int healthThreshold = 50; // base starting health value
     public int currentHealth;
     public StatusBar healthBar;
+
+
     public int staminaThreshold = 50; // base starting stamina value. threshold which stamina refills to.
     public int currentStamina; // decreases with sprinting. refills with walking.
     public StatusBar staminaBar;
-    public int damageThreshold = 20; // base starting melee damage output. changes when using different weapons with fixed damage amount.
-    // public int currentDamage; // usually the same as damage threshold
+
+
+    public int damageValue = 10;
+    public int damageBonus = 0; // used for skill points
     public StatusBar damageBar;
 
     void Start()
     {
+        deathCanvasGroup = deathScreen.GetComponent<CanvasGroup>();
+
+        deathScreen.SetActive(false);
+
         currentHealth = healthThreshold;
         healthBar.SetValueRange(maxRange);
         healthBar.SetStatus(healthThreshold);
@@ -23,20 +39,19 @@ public class PlayerInfo : MonoBehaviour
         healthBar.SetValueRange(maxRange);
         staminaBar.SetStatus(staminaThreshold);
 
-        // currentDamage = damageThreshold;
         healthBar.SetValueRange(maxRange);
-        damageBar.SetStatus(damageThreshold);
+        damageBar.SetStatus(damageValue);
     }
 
     void Update()  // status change tests
     {
         if (Input.GetKeyDown(KeyCode.Q)) //take damage test
         {
-            ChangeHealth(-20);
+            ChangeHealth(-10);
         }
         if (Input.GetKeyDown(KeyCode.W)) //heal test
         {
-            ChangeHealth(20);
+            ChangeHealth(10);
         }
         if (Input.GetKeyDown(KeyCode.E)) //lose stamina test
         {
@@ -46,36 +61,45 @@ public class PlayerInfo : MonoBehaviour
         {
             ChangeStamina(10);
         }
-        if (Input.GetKeyDown(KeyCode.T)) // increase stamina threshold test
+        if (Input.GetKeyDown(KeyCode.T)) //damge change test
         {
-            ChangeStaminaThreshold(70);
+            ChangeDamageValue(20);
         }
-        if (Input.GetKeyDown(KeyCode.Y)) // increase damage threshold test
+        if (Input.GetKeyDown(KeyCode.Y)) //damage change test
         {
-            ChangeDamageThreshold(90);
+            ChangeDamageValue(90);
         }
-        // if (Input.GetKeyDown(KeyCode.U)) //decrease damage output test
-        // {
-        //     ChangeDamageOutput(-5);
-        // }
-        // if (Input.GetKeyDown(KeyCode.I)) //increase damage output test
-        // {
-        //     ChangeDamageOutput(5);
-        // }
     }
 
     public void ChangeHealth(int health) // used when taking damage, using first aid kits, other effects.
     {
         currentHealth += health;
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0; // player death game status
+            PlayerDeath();
         }
         if (currentHealth > healthThreshold)
         {
             currentHealth = healthThreshold;
         }
         healthBar.SetStatus(currentHealth);
+    }
+
+    public void ChangeHealthThreshold(int healthThresholdIncrease)
+    {
+        if (healthThresholdIncrease > 0)
+        {
+            healthThreshold += healthThresholdIncrease;
+            if (healthThreshold > maxRange)
+            {
+                healthThreshold = maxRange;
+            }
+        }
+        else
+        {
+            Debug.Log("Don't decrease healthThreshold");
+        }
     }
 
     public void ChangeStamina(int stamina) // alters current stamina and passes to statusbar. called inside sprinting function loop. called during melee attacks
@@ -92,45 +116,63 @@ public class PlayerInfo : MonoBehaviour
         staminaBar.SetStatus(currentStamina);
     }
 
-    // public void ChangeDamageOutput(int damageOutput) // not necessary. optional for various effects. changeDamageThreshold would be used more often with weapon changes.
-    // {
-    //     currentDamage += damageOutput;
-    //     if (currentDamage < 0)
-    //     {
-    //         currentDamage = 0;
-    //     }
-    //     if (currentDamage > damageThreshold)
-    //     {
-    //         currentDamage = damageThreshold;
-    //     }
-    //     damageBar.SetStatus(currentDamage);
-    // }
-
-    public void ChangeStaminaThreshold(int newStaminaThreshold) // non-incremental changes. used in player progression
+    public void ChangeStaminaThreshold(int staminaThresholdIncrease) // non-incremental changes. used in player progression
     {
-        staminaThreshold = newStaminaThreshold;
-        if (staminaThreshold > maxRange)
+        if (staminaThresholdIncrease > 0)
         {
-            staminaThreshold = maxRange;
+            staminaThreshold += staminaThresholdIncrease;
+            if (staminaThreshold > maxRange)
+            {
+                staminaThreshold = maxRange;
+            }
         }
-        if (staminaThreshold < 0) // stamina threshold wouldn't decrease in game
+        else
         {
-            staminaThreshold = 0;
+            Debug.Log("Don't decrease staminaThreshold");
         }
-
     }
 
-    public void ChangeDamageThreshold(int newDamageThreshold) // changes occur depending on what weapon the player is using. would need to be called in addition to 
+    public void ChangeDamageValue(int newdamageValue) // changes occur depending on what weapon the player is using. damageBonus stays the same
     {
-        damageThreshold = newDamageThreshold;
-        if (damageThreshold > maxRange)
+        damageValue = newdamageValue += damageBonus;
+        if (damageValue > maxRange)
         {
-            damageThreshold = maxRange;
+            damageValue = maxRange;
         }
-        if (damageThreshold < 20) //damageThreshold shouldn't decrease past start value
+        if (damageValue < 20) //damageValue shouldn't decrease past start value
         {
-            damageThreshold = 20;
+            damageValue = 20;
         }
-        damageBar.SetStatus(damageThreshold);
+        damageBar.SetStatus(damageValue);
+    }
+
+    public void ChangeDamageBonus(int damageBonusIncrease) // used for damage skill point use
+    {
+        damageValue -= damageBonus; //revert to weapon base damage value
+        damageBonus += damageBonusIncrease;
+        ChangeDamageValue(damageValue); //update base weapon damage with new bonus
+    }
+
+    public void PlayerDeath()
+    {
+        deathScreen.SetActive(true);
+        StartCoroutine(displayScreenLoadScene());
+    }
+
+    private IEnumerator displayScreenLoadScene()
+    {
+        float timeElapsed = 0f;
+        float fadeDuration = 2f;
+        while (timeElapsed < fadeDuration)
+        {
+            deathCanvasGroup.alpha = timeElapsed / fadeDuration;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        deathCanvasGroup.alpha = 1f;
+
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("StartMenuScene");
     }
 }
+
