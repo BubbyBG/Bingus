@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6457371792441684228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2316889749592496797}
+  - component: {fileID: 8975977052534035222}
+  m_Layer: 0
+  m_Name: item_weapon_battlerifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2316889749592496797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457371792441684228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2804599117509929816}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8975977052534035222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457371792441684228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac1817cda54fee458129c0ba40806a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePosition: {x: 0, y: 0, z: 0.2}
+  baseAngle: {x: 0, y: 96.32, z: 0}
+  guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
+  held: 1
+  itemName: Rifle
+--- !u!1001 &2405284441882676403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2316889749592496797}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.2574128
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000000037252903
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.044583738
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      propertyPath: m_Name
+      value: rifle-battle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+--- !u!4 &2804599117509929816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+  m_PrefabInstance: {fileID: 2405284441882676403}
+  m_PrefabAsset: {fileID: 0}

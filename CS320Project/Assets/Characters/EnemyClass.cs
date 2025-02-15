@@ -2,7 +2,7 @@ using UnityEngine;
 
 /*  This will contain traits and behaviors more specific to
     enemies. This class inherits traits from NPCClass.
-*/
+
 public class EnemyClass : NPCClass
 {
     
@@ -48,4 +48,4 @@ public class EnemyClass : NPCClass
     }*/
 
 
-}
+
