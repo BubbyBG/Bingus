@@ -3,7 +3,7 @@ using System.Collections;
 
 /*  This will contain the basic traits (fields/methods) of
     NPCs. Enemy-specific traits will be inherited from here.
-*/
+
 public class NPCClass : MonoBehaviour
 {
     
