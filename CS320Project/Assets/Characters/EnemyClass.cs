@@ -1,13 +1,16 @@
 using UnityEngine;
+using System.Collections;
 
-/*  This will contain traits and behaviors more specific to
-    enemies. This class inherits traits from NPCClass.
+//  This will contain traits and behaviors more specific to
+//  enemies. This class inherits traits from NPCClass.
 
 public class EnemyClass : NPCClass
 {
     
     //Fields...
-    private float trackingRange = 10;   //Update range
+    private float aggressionRange = 3f;   //Update range
+    private float attackInterval = 1f; //Time between attacks - update as necessary
+    public int dealtDamage = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +26,9 @@ public class EnemyClass : NPCClass
         //Assign behavior/state based on logic, call methods as necessary.
         if(isAlive)
         {
-            //Find a way to get player location first and update the local Vector3 to reflect.
+            //Find locations of player and NPC, then get distance
+            NPCLocation = this.transform.position;
+            playerLocation = Player.position;
             playerDistance = Vector3.Distance(NPCLocation, playerLocation);
             
             //Transition to aggression
@@ -31,37 +36,37 @@ public class EnemyClass : NPCClass
             {
                 if(!aggressiveState)
                 {
-                    ClearState();
+                    base.ClearState();
                     aggressiveState = true;
                 }
 
                 Aggression();
             }
-
+            
             //Transition to pathing/travelling (Tracking Player)
-            else if((aggressiveRange < playerDistance) && (playerDistance < trackingRange))
+            else if((aggressionRange < playerDistance) && (playerDistance < trackingRange))
             {
                 if(!(pathingState || travellingState))
                 {
-                    ClearState();
+                    base.ClearState();
                     pathingState = true;
                     travelDestination = playerLocation;
-                    Pathfinding();
+                    base.Pathfinding();
                 }
                 else if(pathingState)
                 {
                     travelDestination = playerLocation;
-                    Pathfinding();
+                    base.Pathfinding();
                 }
                 else
                 {
-                    Travel();
+                    base.Travel();
                 }
             }
 
             else
             {
-                ClearState();
+                base.ClearState();
                 passiveState = true;
             }
         }
@@ -75,12 +80,25 @@ public class EnemyClass : NPCClass
     private void Aggression()
     {
         //Enemy should face and attack player.
+        while(aggressiveState)
+        {
+            if(AggressionRoutine == null)
+            {
+                AggressionRoutine = StartCoroutine(AttackPlayer());
+            }
+        }
+        if(AggressionRoutine != null)
+        {
+            StopCoroutine(AggressionRoutine)
+        }
     }
 
-    private int AttackPlayer()
+    private IEnumerator AttackPlayer()
     {
-        //This will return a damage int
-        return(0);
+        transform.LookAt(Player);
+        //This is where attack will occur.
+        yield return new WaitForSeconds(attackInterval);
     }
+}
 
 

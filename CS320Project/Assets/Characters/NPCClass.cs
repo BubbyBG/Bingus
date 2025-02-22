@@ -1,37 +1,37 @@
 using UnityEngine;
+using System.Collections;
 
-/*  This will contain the basic traits (fields/methods) of
-    NPCs. Enemy-specific traits will be inherited from here.
+//  This will contain the basic traits (fields/methods) of
+//  NPCs. Enemy-specific traits will be inherited from here.
 
 public class NPCClass : MonoBehaviour
 {
     
     //Fields...
-    //ALL OF THESE NEED TO BE INSTANTIATED. SerializeFields?
-    public Vector3 NPCLocation;
-    private Vector3 NPCVelocity;
-    public float NPCRadius = 1;     //Update size as needed
-    private float playerDistance = 5000;  //This will be determined using the player's coordinates and the NPC's coordinates.
-    private Vector3 travelDestination;
-    private Vector3 playerLocation;
+    //SerializeFields?
+    public Vector3 NPCLocation = new Vector3(0f,0f,0f);
+    public Transform Player;    //Figure out how to assign to player object to get information
+    private Vector3 NPCVelocity = new Vector3(0f,0f,0f);
+    public float NPCRadius = 1.5f;     //Update size as needed
+    private float playerDistance;
+    private float aggressionInterval = 0.2f //Time interval for updating facing
+    private Vector3 travelDestination = new Vector3(0f,0f,0f);
+    private Vector3 playerLocation = new Vector3(0f,0f,0f);
     public bool isAlive;
-    private bool pathingState = false;       //Keeping for now, but may not actually need the bools...
+    private bool pathingState = false;
     private bool travellingState = false;
     private bool aggressiveState = false;
     private bool passiveState = true;
     private int moveSpeed = 2;  //Change to be an appropriate movespeed for character.
-    private float aggressiveRange = 3;  //Update range
+    private float trackingRange = 10f;  //Update range
+    private Coroutine AggressionRoutine;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Start code here - include things like location, facing, starting velocity...
+        //Start code here
         isAlive = true;
-        NPCVelocity = new Vector3(0,0,0);
-        travelDestination = new Vector3(0,0,0); //Might be okay to leave?
-        playerLocation = new Vector3(5000,5000,5000);    //Needs to be updated by getting actual player location.
-
     }
 
     // Update is called once per frame
@@ -41,11 +41,13 @@ public class NPCClass : MonoBehaviour
         //Assign behavior/state based on logic, call methods as necessary.
         if(isAlive)
         {
-            //Find a way to get player location first and update the local Vector3 to reflect.
+            //Find locations of player and NPC, then get distance
+            NPCLocation = this.transform.position;
+            playerLocation = Player.position;
             playerDistance = Vector3.Distance(NPCLocation, playerLocation);
             
             //Transition to aggression
-            if(playerDistance < aggressionRange)
+            if(playerDistance < trackingRange)
             {
                 if(!aggressiveState)
                 {
@@ -68,9 +70,11 @@ public class NPCClass : MonoBehaviour
                 else if(pathingState)
                 {
                     Pathfinding();
+                    //travellingState will be assigned within Pathfinding method.
                 }
                 else
                 {
+                    //travellingState is already assigned at this point.
                     Travel();
                 }
             }
@@ -92,8 +96,15 @@ public class NPCClass : MonoBehaviour
     private void ClearState()
     {
         pathingState = false;
+
         travellingState = false;
+        
         aggressiveState = false;
+        if(AggressionRoutine != null)
+        {
+            StopCoroutine(AggressionRoutine);
+        }
+        
         passiveState = false;
     }
 
@@ -102,7 +113,14 @@ public class NPCClass : MonoBehaviour
     {
         while(aggressiveState)
         {
-            //NPC should face player
+            if(AggressionRoutine == null)
+            {
+                AggressionRoutine = StartCoroutine(FacePlayer());
+            }
+        }
+        if(AggressionRoutine != null)
+        {
+            StopCoroutine(AggressionRoutine);
         }
     }
 
@@ -131,4 +149,10 @@ public class NPCClass : MonoBehaviour
             //Passive behavior (no velocity, change in facing, etc.)
         }
     }
-}*/
+
+    private IEnumerator FacePlayer()
+    {
+        transform.LookAt(Player);
+        yield return new WaitForSeconds(aggressionInterval);
+    }
+}
