@@ -6,19 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class DayNightCycle : MonoBehaviour
 {
-    [SerializeField] //makes the variable appear in the inspector
-    private float timeMultiplier;
-    [SerializeField]
-    private float startHour;
-    [SerializeField]
+    //makes the variable appear in the inspector
+    [SerializeField] private float timeMultiplier;
+    [SerializeField]  private float startHour; 
     private TextMeshProUGUI timeText;
 
-    [SerializeField]
-    private Light sunLight;
-    [SerializeField]
-    private float sunRiseHour;
-    [SerializeField]
-    private float sunSetHour;
+
+    [SerializeField] private Light sunLight;
+    [SerializeField] private float sunRiseHour;
+    [SerializeField] private float sunSetHour;
+
+    [SerializeField] private Material daySkybox;
+    [SerializeField] private Material nightSkybox;
 
     private DateTime currentTime;
     private TimeSpan sunriseTime;
@@ -38,6 +37,7 @@ public class DayNightCycle : MonoBehaviour
     {
         UpdateTimeOfDay();
         RotateSun();
+        UpdateSkybox();
     }
 
     private void UpdateTimeOfDay()
@@ -52,7 +52,7 @@ public class DayNightCycle : MonoBehaviour
     private void RotateSun(){
         float sunLightRotation;
 
-        if(currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime){//daytime
+        if(currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime){//daytime -> rotates sun from 0 to 180 degrees
             TimeSpan sunriseToSunsetDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
             TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
             double percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
@@ -60,7 +60,7 @@ public class DayNightCycle : MonoBehaviour
             sunLightRotation = Mathf.Lerp(0, 180, (float)percentage);
             // Debug.Log("rise to set dur" + sunriseToSunsetDuration + " time since " + timeSinceSunrise +"perc "+ percentage);
         }
-        else{//Nighttime
+        else{//Nighttime -> rotates sun from 180 to 360 degrees 
             TimeSpan sunsetToSunriseDur = CalculateTimeDifference(sunsetTime, sunriseTime);
             TimeSpan timeSinceSunset = CalculateTimeDifference(sunsetTime, currentTime.TimeOfDay);
 
@@ -72,6 +72,15 @@ public class DayNightCycle : MonoBehaviour
         }
 
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
+    }
+
+    private void UpdateSkybox(){
+        if(currentTime.TimeOfDay >= sunriseTime && currentTime.TimeOfDay < sunsetTime){
+            RenderSettings.skybox = daySkybox;
+        }
+        else{
+            RenderSettings.skybox = nightSkybox;
+        }
     }
 
     // private Light UpdateLightSettings(){
