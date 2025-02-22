@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-/*  This will contain traits and behaviors more specific to
-    enemies. This class inherits traits from NPCClass.
+//  This will contain traits and behaviors more specific to
+//  enemies. This class inherits traits from NPCClass.
 
 public class EnemyClass : NPCClass
 {
@@ -99,5 +99,6 @@ public class EnemyClass : NPCClass
         //This is where attack will occur.
         yield return new WaitForSeconds(attackInterval);
     }
+}
 
 
