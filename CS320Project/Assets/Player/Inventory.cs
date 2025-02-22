@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
         return inventorySlot[slotNumber];
     }
 
-    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame
+    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -46,6 +46,17 @@ public class Inventory : MonoBehaviour
         return;
     }
 
+    public void InsertItem(GameObject itemToAdd, int position) //inserts at a position
+    {
+        if (inventorySlot[position] == null)
+        {
+            inventorySlot[position] = itemToAdd;
+            ItemClass item = inventorySlot[position].GetComponent<ItemClass>();
+            item.held = true;
+            return;
+        }
+    }
+
     public void DropItem(int slotNumber) //when the player drops something up ingame
     {
         if (inventorySlot[slotNumber] != null)
@@ -55,4 +66,12 @@ public class Inventory : MonoBehaviour
         }
         return;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void RemoveItem(int slotNumber) //when the player drops something up ingame
+    {
+        inventorySlot[slotNumber] = null;
+    }
+>>>>>>> Stashed changes
 }

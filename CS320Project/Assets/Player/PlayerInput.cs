@@ -62,8 +62,16 @@ public class PlayerInput : MonoBehaviour
 
     public void OnNumberKey(int num)
     {
+<<<<<<< Updated upstream
         activeSlot = num;
         playerArms.SwitchSlot(num);
+=======
+        if (num != activeSlot)
+        {
+            playerArms.SwitchSlot(num);
+            activeSlot = num;
+        }
+>>>>>>> Stashed changes
         return;
     }
 
@@ -75,8 +83,13 @@ public class PlayerInput : MonoBehaviour
     public void OnItemDropKey()
     {
         inventory.DropItem(activeSlot);
+<<<<<<< Updated upstream
         playerArms.SwitchSlot(activeSlot);
         return;
+=======
+        playerArms.EquipItem();
+        masterHUD.RefreshAll();
+>>>>>>> Stashed changes
     }
 
     public void OnUseKey()
