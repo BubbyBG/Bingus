@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /*
     Simple script to "pause" the game by freezing the timescale when escape is pressed (unpauses when esc pressed again)
@@ -28,11 +29,14 @@ public class Pause : MonoBehaviour
     }
 
     public void PauseGame() {
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
     }
 
     public void ResumeGame() {
+       
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
 
