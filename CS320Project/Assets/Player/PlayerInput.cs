@@ -9,10 +9,7 @@ public class PlayerInput : MonoBehaviour
     //references
     public GameObject _playerArms;
     private PlayerArms playerArms;
-    public GameObject _masterHUD;
-    private InventoryGUIControl masterHUD;
     private Inventory inventory;
-    public bool inventoryIsOpen = false;
     public int activeSlot = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +17,6 @@ public class PlayerInput : MonoBehaviour
     {
         playerArms = _playerArms.GetComponent<PlayerArms>();
         inventory = GetComponent<Inventory>();
-        masterHUD = _masterHUD.GetComponent<InventoryGUIControl>();
     }
 
     // Update is called once per frame
@@ -66,33 +62,38 @@ public class PlayerInput : MonoBehaviour
 
     public void OnNumberKey(int num)
     {
-        playerArms.SwitchSlot(num);
+<<<<<<< Updated upstream
         activeSlot = num;
+        playerArms.SwitchSlot(num);
+=======
+        if (num != activeSlot)
+        {
+            playerArms.SwitchSlot(num);
+            activeSlot = num;
+        }
+>>>>>>> Stashed changes
         return;
     }
 
     public void OnInventoryOpenKey()
     {
-        if (inventoryIsOpen)
-        {
-            masterHUD.CloseInventory();
-            inventoryIsOpen = false;
-        }
-        else
-        {
-            masterHUD.OpenInventory();
-            inventoryIsOpen = true;
-        }
+        return;
     }
 
     public void OnItemDropKey()
     {
         inventory.DropItem(activeSlot);
+<<<<<<< Updated upstream
+        playerArms.SwitchSlot(activeSlot);
+        return;
+=======
         playerArms.EquipItem();
+        masterHUD.RefreshAll();
+>>>>>>> Stashed changes
     }
 
     public void OnUseKey()
     {
-
+        return;
     }
 }

@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
         return inventorySlot[slotNumber];
     }
 
-    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame
+    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -43,31 +43,35 @@ public class Inventory : MonoBehaviour
             }
         }
         print("Inventory is full");
+        return;
+    }
+
+    public void InsertItem(GameObject itemToAdd, int position) //inserts at a position
+    {
+        if (inventorySlot[position] == null)
+        {
+            inventorySlot[position] = itemToAdd;
+            ItemClass item = inventorySlot[position].GetComponent<ItemClass>();
+            item.held = true;
+            return;
+        }
     }
 
     public void DropItem(int slotNumber) //when the player drops something up ingame
     {
         if (inventorySlot[slotNumber] != null)
         {
-            GameObject _droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
-            ItemClass droppedItem = _droppedItem.GetComponent<ItemClass>();
-            droppedItem.held = false;
+            GameObject droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
             inventorySlot[slotNumber] = null;
         }
+        return;
     }
+<<<<<<< Updated upstream
+=======
 
-    public GameObject RemoveItem(int slotNumber) //when the player drops something up ingame
+    public void RemoveItem(int slotNumber) //when the player drops something up ingame
     {
-        if (inventorySlot[slotNumber] != null)
-        {
-            GameObject _removedItem = inventorySlot[slotNumber];
-            inventorySlot[slotNumber] = null;
-            return _removedItem;
-        }
-        else
-        {
-            return null;
-        }
+        inventorySlot[slotNumber] = null;
     }
-
+>>>>>>> Stashed changes
 }

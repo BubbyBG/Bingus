@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 /* First person display class
@@ -14,12 +13,25 @@ public class PlayerArms : MonoBehaviour
     private GameObject heldItem;
     private Inventory inventory; //ref to object where the inventory is
     private PlayerInput input;
+    private Vector3 swayVector;
+    public bool updateArms;
+
+    [SerializeField]
+    private float maxSwayStanding = 0.11f;
+    [SerializeField]
+    private float maxSwayWalking = 0.11f;
+    [SerializeField]
+    private float maxSwayRotation = 0.11f;
+    [SerializeField]
+    private float swayFrequencyStanding = 0.11f;
 
     void Start()
     {
         inventory = transform.parent.parent.GetComponent<Inventory>();
         input = transform.parent.parent.GetComponent<PlayerInput>();
         heldItemType = inventory.GetItem(input.activeSlot);
+        swayVector = new Vector3(0f, 0f, 0f);
+        updateArms = true;
         EquipItem();
     }
 
@@ -30,16 +42,15 @@ public class PlayerArms : MonoBehaviour
 
     public void EquipItem() //update item model etc
     {
-        heldItemType = inventory.GetItem(input.activeSlot);
         if (heldItemType == null)
         {
             Destroy(heldItem);
-            heldItem = Instantiate(blankObjectDefinition, gameObject.transform, false);
+            heldItem = Instantiate(blankObjectDefinition, transform, false);
         } 
         else
         {
             Destroy(heldItem);
-            heldItem = Instantiate(heldItemType, gameObject.transform, false);
+            heldItem = Instantiate(heldItemType, transform, false);
             ItemClass heldItemClass = heldItem.GetComponent<ItemClass>();
             heldItem.transform.localPosition = heldItemClass.basePosition;
             heldItem.transform.localEulerAngles = heldItemClass.baseAngle;
@@ -48,19 +59,31 @@ public class PlayerArms : MonoBehaviour
 
     public void UpdateItemLocation()
     {
-            ItemClass heldItemClass = heldItem.GetComponent<ItemClass>();
-            heldItem.transform.localPosition = heldItemClass.basePosition;
-            heldItem.transform.localEulerAngles = heldItemClass.baseAngle;
+        swayVector.y = maxSwayStanding * Mathf.Sin(swayFrequencyStanding * Time.time);
+        ItemClass heldItemClass = heldItem.GetComponent<ItemClass>();
+        heldItem.transform.localPosition = heldItemClass.basePosition + swayVector;
+        heldItem.transform.localEulerAngles = heldItemClass.baseAngle;
     }
 
-    public void SwitchSlot(int inputNum)
+    public void SwitchSlot(int lastInput)
     {
-        if (inputNum != input.activeSlot) //update if a new slot was selected
+<<<<<<< Updated upstream:CS320Project/Assets/Player/PlayerDisplay.cs
+        if (lastInput != input.activeSlot) //update if a new slot was selected
         {
-            input.activeSlot = inputNum;
+            input.activeSlot = lastInput;
             //Check for null ???
             heldItemType = inventory.GetItem(input.activeSlot);
             EquipItem();
         }
+=======
+        input.activeSlot = inputNum;
+        heldItemType = inventory.GetItem(input.activeSlot);
+        EquipItem();
+    }
+
+    public void UpdateArms()
+    {
+        SwitchSlot(input.activeSlot);
+>>>>>>> Stashed changes:CS320Project/Assets/Player/PlayerArms.cs
     }
 }

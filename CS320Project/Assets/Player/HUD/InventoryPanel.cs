@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class InventoryPanel : MonoBehaviour
 {
     [SerializeField]
-    private int slotNumber;
+    public int slotNumber;
     [SerializeField]
     private GameObject player;
     private Inventory inventory;
@@ -38,11 +38,12 @@ public class InventoryPanel : MonoBehaviour
         {
             item = null;
         }
+        Refresh();
     }
 
-    void Update()
+    void Awake()
     {
-        Refresh();
+        Start();
     }
 
     public void Refresh()
@@ -67,17 +68,18 @@ public class InventoryPanel : MonoBehaviour
         }
     }
 
-    public int GetNumber()
+    public GameObject GetItem()
     {
-        if (inventory.GetItem(slotNumber) != null)
-        {
-            print(item.itemName);
-            return slotNumber;
-        }
-        else
-        {
-            print("ERROR");
-            return -1;
-        }
+        return inventory.GetItem(slotNumber);
+    }
+
+    public void RemoveItem()
+    {
+        inventory.RemoveItem(slotNumber);
+    }
+
+    public void AddItem(GameObject item, int position)
+    {
+        inventory.InsertItem(item, position);
     }
 }
