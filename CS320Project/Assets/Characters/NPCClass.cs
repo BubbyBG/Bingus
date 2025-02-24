@@ -5,26 +5,27 @@ using System.Collections;
 //  NPCs. Enemy-specific traits will be inherited from here.
 
 public class NPCClass : MonoBehaviour
-{
+{ 
     
     //Fields...
     //SerializeFields?
     public Vector3 NPCLocation = new Vector3(0f,0f,0f);
     public Transform Player;    //Figure out how to assign to player object to get information
-    private Vector3 NPCVelocity = new Vector3(0f,0f,0f);
+    protected Vector3 NPCVelocity = new Vector3(0f,0f,0f);
     public float NPCRadius = 1.5f;     //Update size as needed
-    private float playerDistance;
-    private float aggressionInterval = 0.2f //Time interval for updating facing
-    private Vector3 travelDestination = new Vector3(0f,0f,0f);
-    private Vector3 playerLocation = new Vector3(0f,0f,0f);
+    protected float playerDistance;
+    protected float aggressionInterval = 0.2f; //Time interval for updating facing
+    public GameObject player;
+    protected Vector3 travelDestination = new Vector3(0f,0f,0f);
+    protected Vector3 playerLocation = new Vector3(0f,0f,0f);
     public bool isAlive;
-    private bool pathingState = false;
-    private bool travellingState = false;
-    private bool aggressiveState = false;
-    private bool passiveState = true;
-    private int moveSpeed = 2;  //Change to be an appropriate movespeed for character.
-    private float trackingRange = 10f;  //Update range
-    private Coroutine AggressionRoutine;
+    protected bool pathingState = false;
+    protected bool travellingState = false;
+    protected bool aggressiveState = false;
+    protected bool passiveState = true;
+    protected int moveSpeed = 2;  //Change to be an appropriate movespeed for character.
+    protected float trackingRange = 10f;  //Update range
+    protected Coroutine AggressionRoutine;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,8 +43,10 @@ public class NPCClass : MonoBehaviour
         if(isAlive)
         {
             //Find locations of player and NPC, then get distance
+            playerLocation = player.transform.position;
+            playerLocation = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
             NPCLocation = this.transform.position;
-            playerLocation = Player.position;
+            //playerLocation = Player.position;
             playerDistance = Vector3.Distance(NPCLocation, playerLocation);
             
             //Transition to aggression
@@ -93,7 +96,7 @@ public class NPCClass : MonoBehaviour
     }
 
     //This method clears the state that the NPC is in.
-    private void ClearState()
+    protected void ClearState()
     {
         pathingState = false;
 
@@ -109,7 +112,7 @@ public class NPCClass : MonoBehaviour
     }
 
     //This method will control the aggressive response toward the player.
-    private void Aggression()
+    protected void Aggression()
     {
         while(aggressiveState)
         {
@@ -125,7 +128,7 @@ public class NPCClass : MonoBehaviour
     }
 
     //This method will use nodes to find a path to the destination.
-    private void Pathfinding()
+    protected void Pathfinding()
     {
         while(pathingState)
         {
@@ -134,7 +137,7 @@ public class NPCClass : MonoBehaviour
     }
 
     //This method will facilitate movement along the path to the destination.
-    private void Travel()
+    protected void Travel()
     {
         while(travellingState)
         {
@@ -142,7 +145,7 @@ public class NPCClass : MonoBehaviour
         }
     }
 
-    private void Passive()
+    protected void Passive()
     {
         while(passiveState)
         {
@@ -150,7 +153,7 @@ public class NPCClass : MonoBehaviour
         }
     }
 
-    private IEnumerator FacePlayer()
+    protected IEnumerator FacePlayer()
     {
         transform.LookAt(Player);
         yield return new WaitForSeconds(aggressionInterval);

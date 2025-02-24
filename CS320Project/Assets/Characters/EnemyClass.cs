@@ -11,12 +11,13 @@ public class EnemyClass : NPCClass
     private float aggressionRange = 3f;   //Update range
     private float attackInterval = 1f; //Time between attacks - update as necessary
     public int dealtDamage = 0;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Start code here
-        base.Start();
+        //base.Start();
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class EnemyClass : NPCClass
         }
         if(AggressionRoutine != null)
         {
-            StopCoroutine(AggressionRoutine)
+            StopCoroutine(AggressionRoutine);
         }
     }
 

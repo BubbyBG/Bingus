@@ -66,12 +66,9 @@ public class Inventory : MonoBehaviour
         }
         return;
     }
-<<<<<<< Updated upstream
-=======
 
     public void RemoveItem(int slotNumber) //when the player drops something up ingame
     {
         inventorySlot[slotNumber] = null;
     }
->>>>>>> Stashed changes
 }

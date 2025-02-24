@@ -67,7 +67,6 @@ public class PlayerArms : MonoBehaviour
 
     public void SwitchSlot(int lastInput)
     {
-<<<<<<< Updated upstream:CS320Project/Assets/Player/PlayerDisplay.cs
         if (lastInput != input.activeSlot) //update if a new slot was selected
         {
             input.activeSlot = lastInput;
@@ -75,15 +74,10 @@ public class PlayerArms : MonoBehaviour
             heldItemType = inventory.GetItem(input.activeSlot);
             EquipItem();
         }
-=======
-        input.activeSlot = inputNum;
-        heldItemType = inventory.GetItem(input.activeSlot);
-        EquipItem();
     }
 
     public void UpdateArms()
     {
         SwitchSlot(input.activeSlot);
->>>>>>> Stashed changes:CS320Project/Assets/Player/PlayerArms.cs
     }
 }
