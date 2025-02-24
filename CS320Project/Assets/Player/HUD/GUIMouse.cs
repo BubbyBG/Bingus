@@ -10,7 +10,7 @@ public class GUIMouse : MonoBehaviour
     public GameObject gotItem;
     private InventoryGUIControl control;
     public GameObject player;
-    private PlayerArms playerArms;
+    public PlayerArms playerArms;
     //private PlayerInput playerInput;
 
     void Start()
@@ -18,7 +18,7 @@ public class GUIMouse : MonoBehaviour
         iconDisplayer = null;
         grabbedItem = null;
         control = transform.parent.GetComponent<InventoryGUIControl>();
-        player = control.playerObject;
+        //player = control.playerObject;
         playerArms = player.transform.GetChild(0).GetChild(0).GetComponent<PlayerArms>();
     }
 

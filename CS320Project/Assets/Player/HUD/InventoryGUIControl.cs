@@ -32,6 +32,7 @@ public class InventoryGUIControl : MonoBehaviour
     {
         _mainContainer.SetActive(true);
         mouseObject = Instantiate(_mouseObject, transform);
+        mouseObject.GetComponent<GUIMouse>().playerArms = playerObject.transform.GetChild(0).GetChild(0).GetComponent<PlayerArms>();
         Cursor.visible = true;
         RefreshAll();
     }

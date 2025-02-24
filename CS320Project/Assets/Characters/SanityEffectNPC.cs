@@ -4,7 +4,7 @@
     Won't be testable until an actual NPC is present as one is needed to be in the vicinity of the player
 */
 public class SanityEffectNPC : NPCClass
-{
+{/*
     private SanityState sanityState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,5 +19,5 @@ public class SanityEffectNPC : NPCClass
             sanityState.rate = 5f;
         }
         
-    }
+    }*/
 }
