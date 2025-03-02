@@ -3,17 +3,23 @@ using UnityEngine.UI;
 
 public class GUIMouse : MonoBehaviour
 {
-    private GameObject grabbedItem;
+    public GameObject grabbedItem;
     [SerializeField]
     private GameObject iconDisplayerDef;
     private GameObject iconDisplayer;
-    public Inventory inventory;
+    public GameObject gotItem;
+    private InventoryGUIControl control;
+    public GameObject player;
+    public PlayerArms playerArms;
+    //private PlayerInput playerInput;
 
     void Start()
     {
         iconDisplayer = null;
         grabbedItem = null;
-        inventory = transform.parent.GetComponent<InventoryGUIControl>().inventory;
+        control = transform.parent.GetComponent<InventoryGUIControl>();
+        //player = control.playerObject;
+        playerArms = player.transform.GetChild(0).GetChild(0).GetComponent<PlayerArms>();
     }
 
     // Update is called once per frame
@@ -39,30 +45,37 @@ public class GUIMouse : MonoBehaviour
             InventoryPanel panel = _obj.GetComponent<InventoryPanel>();
             if (panel != null) //if the 2d object was an inventory panel
             {
-                int num = panel.GetNumber();
-                if (grabbedItem == null && panel.item != null) //empty hand, full slot; pick up item
+                gotItem = panel.GetItem();
+                if (grabbedItem == null && gotItem != null) //empty hand, full slot; pick up item
                 {
-                    grabbedItem = inventory.RemoveItem(num);
+                    grabbedItem = gotItem;
+                    panel.RemoveItem();
                     PutOnCursor(grabbedItem);
+                    panel.Refresh();
                 }
-                else if (grabbedItem != null && panel.item == null) //full hand, empty slot; place item
+                else if (grabbedItem != null && gotItem == null) //full hand, empty slot; place item
                 {
-                    inventory.AddItem(grabbedItem);
+                    panel.AddItem(grabbedItem, panel.slotNumber);
                     grabbedItem = null;
                     EmptyCursor();
+                    panel.Refresh();
                 }
-                else if (grabbedItem != null && panel.item != null) //full hand, full slot; swap items
+                else if (grabbedItem != null && gotItem != null) //full hand, full slot; swap items
                 {
                     GameObject previouslyHeld = grabbedItem;
-                    grabbedItem = inventory.RemoveItem(num);
-                    PutOnCursor(grabbedItem);
-                    inventory.AddItem(previouslyHeld);
+                    grabbedItem = gotItem;
+                    panel.RemoveItem();
+                    panel.AddItem(previouslyHeld, panel.slotNumber);
+                    EmptyCursor();
+                    PutOnCursor(gotItem);
+                    control.RefreshAll();
                 }
+                playerArms.UpdateArms();
             }
         }
     }
 
-    public void PutOnCursor(GameObject obj)
+    private void PutOnCursor(GameObject obj)
     {
         //Retrieve correct sprite
         Sprite sprite = obj.GetComponent<ItemClass>().guiSprite;
@@ -71,9 +84,8 @@ public class GUIMouse : MonoBehaviour
         iconDisplayer.GetComponent<Image>().sprite = sprite;
     }
 
-    public void EmptyCursor()
+    private void EmptyCursor()
     {
-        grabbedItem = null;
         Destroy(iconDisplayer);
     }
 }

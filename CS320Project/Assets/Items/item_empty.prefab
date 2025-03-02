@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePosition: {x: 0.1, y: 0, z: 0.09}
   baseAngle: {x: -13.79, y: -99.31, z: -6.8}
+  guiSprite: {fileID: 0}
+  itemName: 
+  held: 0

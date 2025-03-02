@@ -4,9 +4,8 @@ using System.Collections;
 //  This will contain the basic traits (fields/methods) of
 //  NPCs. Enemy-specific traits will be inherited from here.
 
-public class NPCClass : MonoBehaviour
+public class NPCClass : MonoBehaviour 
 { 
-    
     //Fields...
     public Vector3 NPCLocation;
     public Transform Player;    //Assign to Transform of player object in Unity to get information
@@ -107,6 +106,7 @@ public class NPCClass : MonoBehaviour
 
     //This method clears the state that the NPC is in.
     protected void ClearState()
+    protected void ClearState()
     {
         pathingState = false;
 
@@ -122,7 +122,7 @@ public class NPCClass : MonoBehaviour
     }
 
     //This method will control the aggressive response toward the player.
-    private void Aggression()
+    protected void Aggression()
     {
         //Enemy should face and attack player.
         while(aggressiveState)
@@ -147,6 +147,7 @@ public class NPCClass : MonoBehaviour
 
     //This method will use nodes to find a path to the destination.
     protected void Pathfinding()
+    protected void Pathfinding()
     {
         while(pathingState)
         {
@@ -156,6 +157,7 @@ public class NPCClass : MonoBehaviour
 
     //This method will facilitate movement along the path to the destination.
     protected void Travel()
+    protected void Travel()
     {
         while(travellingState)
         {
@@ -164,6 +166,7 @@ public class NPCClass : MonoBehaviour
     }
 
     protected void Passive()
+    protected void Passive()
     {
         while(passiveState)
         {
@@ -171,6 +174,7 @@ public class NPCClass : MonoBehaviour
         }
     }
 
+    protected IEnumerator FacePlayer()
     protected IEnumerator FacePlayer()
     {
         transform.LookAt(Player);

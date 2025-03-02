@@ -48,5 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b481405ea9dc9f45b6ce5908acb4817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5547679155403161905, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+  grabbedItem: {fileID: 0}
   iconDisplayerDef: {fileID: 2330154122814975278, guid: c80231eee0059b94ab8496d3a5ced2ad, type: 3}
+  gotItem: {fileID: 0}
+  player: {fileID: 0}
