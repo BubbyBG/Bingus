@@ -33,7 +33,7 @@ public class NPCClass : MonoBehaviour
     protected float aggressionRange = 3f;   //Update range as needed
     [SerializeField]
     protected float attackInterval = 1f; //Time between attacks - update as necessary
-    public int dealtDamage = 0;
+    public int dealtDamage = 1; //Update damage number as needed
     protected Coroutine AggressionRoutine;
     protected Coroutine BehaviorRoutine;
 
