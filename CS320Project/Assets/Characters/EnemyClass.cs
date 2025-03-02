@@ -1,16 +1,19 @@
+/*
 using UnityEngine;
 using System.Collections;
 
 //  This will contain traits and behaviors more specific to
 //  enemies. This class inherits traits from NPCClass.
 
+//DO NOT USE THIS CLASS - NPCClass IS NOW ALWAYS AN ENEMY.
+
 public class EnemyClass : NPCClass
 {
     
     //Fields...
-    private float aggressionRange = 3f;   //Update range
-    private float attackInterval = 1f; //Time between attacks - update as necessary
-    public int dealtDamage = 0;
+    //private float aggressionRange = 3f;   //Update range
+    //private float attackInterval = 1f; //Time between attacks - update as necessary
+    //public int dealtDamage = 0;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -101,5 +104,5 @@ public class EnemyClass : NPCClass
         yield return new WaitForSeconds(attackInterval);
     }
 }
-
+*/
 

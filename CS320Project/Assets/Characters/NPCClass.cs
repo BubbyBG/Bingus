@@ -4,28 +4,37 @@ using System.Collections;
 //  This will contain the basic traits (fields/methods) of
 //  NPCs. Enemy-specific traits will be inherited from here.
 
-public class NPCClass : MonoBehaviour
+public class NPCClass : MonoBehaviour 
 { 
-    
     //Fields...
-    //SerializeFields?
-    public Vector3 NPCLocation = new Vector3(0f,0f,0f);
-    public Transform Player;    //Figure out how to assign to player object to get information
+    public Vector3 NPCLocation;
+    public Transform Player;    //Assign to Transform of player object in Unity to get information
     protected Vector3 NPCVelocity = new Vector3(0f,0f,0f);
     public float NPCRadius = 1.5f;     //Update size as needed
     protected float playerDistance;
+    [SerializeField]
     protected float aggressionInterval = 0.2f; //Time interval for updating facing
-    public GameObject player;
+    public GameObject player;   //Assign to player object in Unity to get information
+    [SerializeField]
     protected Vector3 travelDestination = new Vector3(0f,0f,0f);
     protected Vector3 playerLocation = new Vector3(0f,0f,0f);
     public bool isAlive;
+    public int healthPoints = 10;   //Update HP as needed
     protected bool pathingState = false;
     protected bool travellingState = false;
     protected bool aggressiveState = false;
     protected bool passiveState = true;
-    protected int moveSpeed = 2;  //Change to be an appropriate movespeed for character.
-    protected float trackingRange = 10f;  //Update range
+    [SerializeField]
+    protected int moveSpeed = 2;  //Update speed as needed
+    [SerializeField]
+    protected float trackingRange = 10f;  //Update range as needed
+    [SerializeField]
+    protected float aggressionRange = 3f;   //Update range as needed
+    [SerializeField]
+    protected float attackInterval = 1f; //Time between attacks - update as necessary
+    public int dealtDamage = 1; //Update damage number as needed
     protected Coroutine AggressionRoutine;
+    protected Coroutine BehaviorRoutine;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +42,15 @@ public class NPCClass : MonoBehaviour
     {
         //Start code here
         isAlive = true;
+        if(BehaviorRoutine == null)     //Begin behavioral coroutine
+        {
+            BehaviorRoutine = StartCoroutine(Behavior());
+        }
+        else                            //Destroy entity if it gets to this state
+        {
+            isAlive = false;
+            Destroy(this,0.0f);
+        }
     }
 
     // Update is called once per frame
@@ -40,62 +58,54 @@ public class NPCClass : MonoBehaviour
     {
         //Update code here - behavior logic and time-based things will go here.
         //Assign behavior/state based on logic, call methods as necessary.
-        if(isAlive)
+
+        if(healthPoints <= 0)   //Kill NPC if no HP - will be facillitated by Behavior Coroutine
         {
-            //Find locations of player and NPC, then get distance
-            playerLocation = player.transform.position;
-            playerLocation = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
-            NPCLocation = this.transform.position;
-            //playerLocation = Player.position;
-            playerDistance = Vector3.Distance(NPCLocation, playerLocation);
+            isAlive = false;
+        }
+
+        //Find locations of player and NPC, then get distance
+        //playerLocation = player.transform.position;
+        playerLocation = GameObject.FindGameObjectsWithTag("Player")[0].transform.position;
+        NPCLocation = this.transform.position;
+        //playerLocation = Player.position;
+        playerDistance = Vector3.Distance(NPCLocation, playerLocation);
             
-            //Transition to aggression
-            if(playerDistance < trackingRange)
-            {
-                if(!aggressiveState)
-                {
-                    ClearState();
-                    aggressiveState = true;
-                }
-
-                Aggression();
-            }
-
-            //Transition to pathing/travelling (Going to Destination)
-            else if(Vector3.Distance(travelDestination, NPCLocation) > NPCRadius)
-            {
-                if(!(pathingState || travellingState))
-                {
-                    ClearState();
-                    pathingState = true;
-                    Pathfinding();
-                }
-                else if(pathingState)
-                {
-                    Pathfinding();
-                    //travellingState will be assigned within Pathfinding method.
-                }
-                else
-                {
-                    //travellingState is already assigned at this point.
-                    Travel();
-                }
-            }
-
-            else
+        //Transition to aggression
+        if(playerDistance < aggressionRange)
+        {
+            if(!aggressiveState)
             {
                 ClearState();
-                passiveState = true;
+                aggressiveState = true;
             }
         }
+
+        //Transition to pathing/travelling (Tracking Player)
+        else if((aggressionRange < playerDistance) && (playerDistance < trackingRange))
+        {
+            if(!(pathingState || travellingState))
+            {
+                ClearState();
+                travelDestination = playerLocation;
+                pathingState = true;
+            }
+            else
+            {
+                travelDestination = playerLocation;
+            }
+        }
+        
         else
         {
-            //Cleanup/NPC Death
+            ClearState();
+            passiveState = true;
         }
-
+        
     }
 
     //This method clears the state that the NPC is in.
+    protected void ClearState()
     protected void ClearState()
     {
         pathingState = false;
@@ -114,11 +124,12 @@ public class NPCClass : MonoBehaviour
     //This method will control the aggressive response toward the player.
     protected void Aggression()
     {
+        //Enemy should face and attack player.
         while(aggressiveState)
         {
             if(AggressionRoutine == null)
             {
-                AggressionRoutine = StartCoroutine(FacePlayer());
+                AggressionRoutine = StartCoroutine(AttackPlayer());
             }
         }
         if(AggressionRoutine != null)
@@ -127,7 +138,15 @@ public class NPCClass : MonoBehaviour
         }
     }
 
+    private IEnumerator AttackPlayer()
+    {
+        transform.LookAt(Player);
+        //This is where attack will occur.
+        yield return new WaitForSeconds(attackInterval);
+    }
+
     //This method will use nodes to find a path to the destination.
+    protected void Pathfinding()
     protected void Pathfinding()
     {
         while(pathingState)
@@ -138,6 +157,7 @@ public class NPCClass : MonoBehaviour
 
     //This method will facilitate movement along the path to the destination.
     protected void Travel()
+    protected void Travel()
     {
         while(travellingState)
         {
@@ -145,6 +165,7 @@ public class NPCClass : MonoBehaviour
         }
     }
 
+    protected void Passive()
     protected void Passive()
     {
         while(passiveState)
@@ -154,8 +175,38 @@ public class NPCClass : MonoBehaviour
     }
 
     protected IEnumerator FacePlayer()
+    protected IEnumerator FacePlayer()
     {
         transform.LookAt(Player);
         yield return new WaitForSeconds(aggressionInterval);
+    }
+
+    protected void Behavior()
+    {
+        while(isAlive)
+        {
+            //Should never be in more than one state at a time
+            if(aggressiveState)
+            {
+                Aggression();
+            }
+
+            if(pathingState)
+            {
+                Pathfinding();
+            }
+
+            if(travellingState)
+            {
+                Travel();
+            }
+
+            if(passiveState)
+            {
+                Passive();
+            }
+        }
+        
+        Destroy(this,0.0f); //Only gets here if no HP - kill NPC (automatically ends coroutines)
     }
 }
