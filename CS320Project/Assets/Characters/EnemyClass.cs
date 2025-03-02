@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 using System.Collections;
 
@@ -103,5 +104,5 @@ public class EnemyClass : NPCClass
         yield return new WaitForSeconds(attackInterval);
     }
 }
-
+*/
 
