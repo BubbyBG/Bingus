@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8767115482202104572}
-  - component: {fileID: 6649436547720231712}
   - component: {fileID: 1025460586797374051}
   - component: {fileID: 3717510628115554716}
+  - component: {fileID: 1700644694662251025}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -34,24 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6649436547720231712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350971167689596565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d2bcb32ff2934408d9946d5c02a46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCLocation: {x: 0, y: 0, z: 0}
-  Player: {fileID: 0}
-  NPCRadius: 1.5
-  isAlive: 0
-  dealtDamage: 0
-  player: {fileID: 5547679155403161905, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
 --- !u!33 &1025460586797374051
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,3 +87,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1700644694662251025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350971167689596565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be57bf53c1d35f4395cfb63dbc66839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCLocation: {x: 0, y: 0, z: 0}
+  Player: {fileID: 0}
+  NPCRadius: 1.5
+  aggressionInterval: 0.2
+  player: {fileID: 0}
+  travelDestination: {x: 0, y: 0, z: 0}
+  isAlive: 0
+  healthPoints: 10
+  moveSpeed: 2
+  trackingRange: 10
+  aggressionRange: 3
+  attackInterval: 1
+  dealtDamage: 1

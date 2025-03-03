@@ -36,7 +36,6 @@ public class NPCClass : MonoBehaviour
     protected Coroutine AggressionRoutine;
     protected Coroutine BehaviorRoutine;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,7 +43,7 @@ public class NPCClass : MonoBehaviour
         isAlive = true;
         if(BehaviorRoutine == null)     //Begin behavioral coroutine
         {
-            BehaviorRoutine = StartCoroutine(Behavior());
+            BehaviorRoutine = StartCoroutine("Behavior");
         }
         else                            //Destroy entity if it gets to this state
         {
@@ -106,7 +105,6 @@ public class NPCClass : MonoBehaviour
 
     //This method clears the state that the NPC is in.
     protected void ClearState()
-    protected void ClearState()
     {
         pathingState = false;
 
@@ -147,7 +145,6 @@ public class NPCClass : MonoBehaviour
 
     //This method will use nodes to find a path to the destination.
     protected void Pathfinding()
-    protected void Pathfinding()
     {
         while(pathingState)
         {
@@ -157,7 +154,6 @@ public class NPCClass : MonoBehaviour
 
     //This method will facilitate movement along the path to the destination.
     protected void Travel()
-    protected void Travel()
     {
         while(travellingState)
         {
@@ -166,7 +162,6 @@ public class NPCClass : MonoBehaviour
     }
 
     protected void Passive()
-    protected void Passive()
     {
         while(passiveState)
         {
@@ -174,7 +169,6 @@ public class NPCClass : MonoBehaviour
         }
     }
 
-    protected IEnumerator FacePlayer()
     protected IEnumerator FacePlayer()
     {
         transform.LookAt(Player);
