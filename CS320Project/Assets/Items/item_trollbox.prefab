@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2316889749592496797}
   - component: {fileID: -5490831157504057119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: item_trollbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   baseAngle: {x: 0, y: 0, z: 0}
   guiSprite: {fileID: 21300000, guid: 2d2bc8b40b0328f45a1e8b56df581143, type: 3}
-  held: 0
+  held: 1
   itemName: Trollbox
 --- !u!1001 &7052963993476710498
 PrefabInstance:

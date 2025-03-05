@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2316889749592496797}
   - component: {fileID: 8975977052534035222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: item_weapon_oldpistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

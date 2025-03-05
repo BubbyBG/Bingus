@@ -57,14 +57,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void DropItem(int slotNumber) //when the player drops something up ingame
+    public bool DropItem(int slotNumber) //when the player drops something up ingame
     {
         if (inventorySlot[slotNumber] != null)
         {
             GameObject droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
+            Vector3 ejectionVector = transform.forward * 2 + transform.up * 2;
+            droppedItem.GetComponent<ItemClass>().OnEjection(ejectionVector);
             inventorySlot[slotNumber] = null;
+            return true;
         }
-        return;
+        return false;
     }
 
     public void RemoveItem(int slotNumber) //when the player drops something up ingame

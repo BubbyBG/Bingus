@@ -58,6 +58,7 @@ public class PlayerControl : MonoBehaviour
         hasJumped = true;
         jumpTimer = 0f;
         snapDistance = 0.1f;
+        playerController.excludeLayers = LayerMask.GetMask("noPlayerCollision");
     }
 
     // Update is called once per frame

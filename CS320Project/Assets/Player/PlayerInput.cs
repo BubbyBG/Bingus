@@ -13,11 +13,12 @@ public class PlayerInput : MonoBehaviour
     private InventoryGUIControl masterHUD;
     private Inventory inventory;
     public bool inventoryIsOpen = false;
-    public int activeSlot = 0;
+    public int activeSlot;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        activeSlot = 0;
         playerArms = _playerArms.GetComponent<PlayerArms>();
         inventory = GetComponent<Inventory>();
         masterHUD = _masterHUD.GetComponent<InventoryGUIControl>();
@@ -66,9 +67,11 @@ public class PlayerInput : MonoBehaviour
 
     public void OnNumberKey(int num)
     {
-        playerArms.SwitchSlot(num);
-        activeSlot = num;
-        return;
+        if (activeSlot != num) //don't switch to the slot that's already active
+        {
+            activeSlot = num;
+            playerArms.SwitchSlot();
+        }
     }
 
     public void OnInventoryOpenKey()
@@ -87,8 +90,11 @@ public class PlayerInput : MonoBehaviour
 
     public void OnItemDropKey()
     {
-        inventory.DropItem(activeSlot);
-        playerArms.EquipItem();
+        if (inventory.DropItem(activeSlot) == true)
+        {
+            playerArms.SwitchSlot();
+            masterHUD.RefreshAll();
+        }
     }
 
     public void OnUseKey()
