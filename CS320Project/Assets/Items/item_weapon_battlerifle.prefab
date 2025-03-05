@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2316889749592496797}
   - component: {fileID: 8975977052534035222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: item_weapon_battlerifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0.2}
   baseAngle: {x: 0, y: 96.32, z: 0}
   guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
-  itemName: Rifle
   held: 1
+  itemName: Rifle
 --- !u!1001 &2405284441882676403
 PrefabInstance:
   m_ObjectHideFlags: 0

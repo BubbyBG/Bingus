@@ -761,6 +761,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b554f71252b1b694b876daa240aa01e8, type: 3}
+--- !u!1 &310630777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2920797639953171041, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+  m_PrefabInstance: {fileID: 666708766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &322266878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327349938097161611, guid: b554f71252b1b694b876daa240aa01e8, type: 3}
@@ -902,7 +907,6 @@ GameObject:
   - component: {fileID: 431854704}
   - component: {fileID: 431854706}
   - component: {fileID: 431854707}
-  - component: {fileID: 431854708}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -978,7 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 431854704}
-  player: {fileID: 0}
+  player: {fileID: 2034623313}
   objects: []
 --- !u!154 &431854707
 TerrainCollider:
@@ -1000,18 +1004,6 @@ TerrainCollider:
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 10122492a8649411c951915adfc31fc0, type: 2}
   m_EnableTreeColliders: 1
---- !u!114 &431854708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431854702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d2bcb32ff2934408d9946d5c02a46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &472201812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1724,10 +1716,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5547679155403161905, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6051157085204556658, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: _masterHUD
       value: 
       objectReference: {fileID: 346393066}
+    - target: {fileID: 6051157085204556658, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: _playerArms
+      value: 
+      objectReference: {fileID: 310630777}
     - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: 'inventorySlot.Array.data[0]'
       value: 
@@ -1740,6 +1740,22 @@ PrefabInstance:
       propertyPath: 'inventorySlot.Array.data[9]'
       value: 
       objectReference: {fileID: 6457371792441684228, guid: 28a26bf4c1949b843a230fc5f3d402bd, type: 3}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: maxSwayWalking
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: maxSwayStanding
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: swayFrequencyStanding
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1950,6 +1966,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 2034623317}
+    - target: {fileID: 852824229272685578, guid: baf3e1c37a12e124bb236924e42be7f9, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 2034623313}
     - target: {fileID: 959474562736798510, guid: baf3e1c37a12e124bb236924e42be7f9, type: 3}
       propertyPath: player
       value: 

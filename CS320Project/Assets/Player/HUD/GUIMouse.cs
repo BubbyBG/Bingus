@@ -11,14 +11,13 @@ public class GUIMouse : MonoBehaviour
     private InventoryGUIControl control;
     public GameObject player;
     public PlayerArms playerArms;
-    //private PlayerInput playerInput;
 
     void Start()
     {
         iconDisplayer = null;
         grabbedItem = null;
         control = transform.parent.GetComponent<InventoryGUIControl>();
-        //player = control.playerObject;
+        player = control.playerObject;
         playerArms = player.transform.GetChild(0).GetChild(0).GetComponent<PlayerArms>();
     }
 
@@ -45,6 +44,7 @@ public class GUIMouse : MonoBehaviour
             InventoryPanel panel = _obj.GetComponent<InventoryPanel>();
             if (panel != null) //if the 2d object was an inventory panel
             {
+                
                 gotItem = panel.GetItem();
                 if (grabbedItem == null && gotItem != null) //empty hand, full slot; pick up item
                 {
@@ -70,7 +70,7 @@ public class GUIMouse : MonoBehaviour
                     PutOnCursor(gotItem);
                     control.RefreshAll();
                 }
-                playerArms.UpdateArms();
+                playerArms.SwitchSlot();
             }
         }
     }

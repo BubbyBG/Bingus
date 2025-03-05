@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8974676977305208581}
   - component: {fileID: 4926680577671732595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: item_empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,5 +47,5 @@ MonoBehaviour:
   basePosition: {x: 0.1, y: 0, z: 0.09}
   baseAngle: {x: -13.79, y: -99.31, z: -6.8}
   guiSprite: {fileID: 0}
-  itemName: 
   held: 0
+  itemName: 

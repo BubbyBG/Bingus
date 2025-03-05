@@ -12,18 +12,18 @@ public class PlayerArms : MonoBehaviour
     private GameObject heldItemType; //the item currently held, or null for none
     private GameObject heldItem;
     private Inventory inventory; //ref to object where the inventory is
-    private PlayerInput input;
+    public PlayerInput input;
     private Vector3 swayVector;
     public bool updateArms;
 
     [SerializeField]
-    private float maxSwayStanding = 0.11f;
+    private float maxSwayStanding;
     [SerializeField]
-    private float maxSwayWalking = 0.11f;
+    private float maxSwayWalking;
     [SerializeField]
-    private float maxSwayRotation = 0.11f;
+    private float maxSwayRotation;
     [SerializeField]
-    private float swayFrequencyStanding = 0.11f;
+    private float swayFrequencyStanding;
 
     void Start()
     {
@@ -65,19 +65,9 @@ public class PlayerArms : MonoBehaviour
         heldItem.transform.localEulerAngles = heldItemClass.baseAngle;
     }
 
-    public void SwitchSlot(int lastInput)
+    public void SwitchSlot()
     {
-        if (lastInput != input.activeSlot) //update if a new slot was selected
-        {
-            input.activeSlot = lastInput;
-            //Check for null ???
-            heldItemType = inventory.GetItem(input.activeSlot);
-            EquipItem();
-        }
-    }
-
-    public void UpdateArms()
-    {
-        SwitchSlot(input.activeSlot);
+        heldItemType = inventory.GetItem(input.activeSlot);
+        EquipItem();
     }
 }
