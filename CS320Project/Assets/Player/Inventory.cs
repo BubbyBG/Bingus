@@ -30,20 +30,19 @@ public class Inventory : MonoBehaviour
         return inventorySlot[slotNumber];
     }
 
-    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
+    public bool AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
     {
         for (int i = 0; i < inventorySize; i++)
         {
             if (inventorySlot[i] == null)
             {
-                inventorySlot[i] = itemToAdd;
-                ItemClass item = inventorySlot[i].GetComponent<ItemClass>();
-                item.held = true;
-                return;
+                inventorySlot[i] = Instantiate(itemToAdd);
+                return true;
             }
         }
+        //else if inventory is full
         print("Inventory is full");
-        return;
+        return false;
     }
 
     public void InsertItem(GameObject itemToAdd, int position) //inserts at a position

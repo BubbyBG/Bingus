@@ -31,4 +31,10 @@ public class ItemClass : MonoBehaviour //This is the parent of weapons and usabl
         rbody = gameObject.AddComponent<Rigidbody>();
         rbody.AddForce(ejectionVector, ForceMode.VelocityChange);
     }
+
+    public void OnUseKey() //when the player looks at it and presses the use button
+    {
+        Destroy(rbody);
+        Destroy(mcollider);
+    }
 }
