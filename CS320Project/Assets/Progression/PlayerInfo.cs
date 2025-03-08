@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Assertions;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -88,6 +89,7 @@ public class PlayerInfo : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0; // player death game status
+            Assert.IsFalse(currentHealth == 0);
             PlayerDeath();
         }
         if (currentHealth > healthThreshold)
@@ -240,6 +242,7 @@ public class PlayerInfo : MonoBehaviour
         {
             damageValue = 5;
         }
+        Assert.IsFalse(damageValue < 5);
         damageBar.SetStatus(damageValue - damageBonus, damageValue);
     }
     public void ChangeDamageBonus(int damageBonusIncrease) // used for damage skill point use
