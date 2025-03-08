@@ -1672,6 +1672,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 919349380226866790, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: noCollideWith.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -103.95527
@@ -1728,6 +1732,14 @@ PrefabInstance:
       propertyPath: _playerArms
       value: 
       objectReference: {fileID: 310630777}
+    - target: {fileID: 6051157085204556658, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: canUse.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051157085204556658, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: cantUse.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: 'inventorySlot.Array.data[0]'
       value: 
