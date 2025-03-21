@@ -8,11 +8,13 @@ public class ItemClass : MonoBehaviour //This is the parent of weapons and usabl
     public Sprite guiSprite;
     public bool held; //Not in an inventory
     public string itemName;
+    private Rigidbody rbody;
+    private BoxCollider mcollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        held = false;
+        held = false; //this might be obsolete with the new OnEjection method
     }
 
     // Update is called once per frame
@@ -21,4 +23,18 @@ public class ItemClass : MonoBehaviour //This is the parent of weapons and usabl
         
     }
 
+    public void OnEjection(Vector3 ejectionVector)
+    {
+        mcollider = gameObject.AddComponent<BoxCollider>();
+        mcollider.size = new Vector3(0.5f, 0.5f, 0.5f);
+        mcollider.excludeLayers = LayerMask.GetMask("Entities");
+        rbody = gameObject.AddComponent<Rigidbody>();
+        rbody.AddForce(ejectionVector, ForceMode.VelocityChange);
+    }
+
+    public void OnUseKey() //when the player looks at it and presses the use button
+    {
+        Destroy(rbody);
+        Destroy(mcollider);
+    }
 }

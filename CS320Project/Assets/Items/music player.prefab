@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3138309109055619784}
   - component: {fileID: 4729313251842122071}
   - component: {fileID: 1815615827750018622}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: music player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

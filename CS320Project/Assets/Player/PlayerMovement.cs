@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour
     private bool hasJumped; //has recently jumped
     float jumpTimer; //
     private float snapDistance; //max distance to magnetise to floor
+    public LayerMask noCollideWith;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +59,7 @@ public class PlayerControl : MonoBehaviour
         hasJumped = true;
         jumpTimer = 0f;
         snapDistance = 0.1f;
+        playerController.excludeLayers = noCollideWith; //LayerMask.GetMask("Interactive");
     }
 
     // Update is called once per frame

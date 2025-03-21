@@ -48,6 +48,7 @@ public class InventoryPanel : MonoBehaviour
 
     public void Refresh()
     {
+        inventory = player.GetComponent<Inventory>();
         if (inventory.GetItem(slotNumber) != null)
         {
             item = inventory.GetItem(slotNumber).GetComponent<ItemClass>();
@@ -56,15 +57,6 @@ public class InventoryPanel : MonoBehaviour
         else
         {
             sprite.sprite = defaultImage;
-        }
-
-        if (input.activeSlot == slotNumber)
-        {
-            sprite.color = Color.white;
-        }
-        else
-        {
-            sprite.color = defaultColor;
         }
     }
 

@@ -30,20 +30,19 @@ public class Inventory : MonoBehaviour
         return inventorySlot[slotNumber];
     }
 
-    public void AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
+    public bool AddItem(GameObject itemToAdd) //when the player picks something up ingame; chooses next available spot
     {
         for (int i = 0; i < inventorySize; i++)
         {
             if (inventorySlot[i] == null)
             {
-                inventorySlot[i] = itemToAdd;
-                ItemClass item = inventorySlot[i].GetComponent<ItemClass>();
-                item.held = true;
-                return;
+                inventorySlot[i] = Instantiate(itemToAdd);
+                return true;
             }
         }
+        //else if inventory is full
         print("Inventory is full");
-        return;
+        return false;
     }
 
     public void InsertItem(GameObject itemToAdd, int position) //inserts at a position
@@ -57,14 +56,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void DropItem(int slotNumber) //when the player drops something up ingame
+    public bool DropItem(int slotNumber) //when the player drops something up ingame
     {
         if (inventorySlot[slotNumber] != null)
         {
             GameObject droppedItem = Instantiate(inventorySlot[slotNumber], transform.position, transform.rotation);
+            Vector3 ejectionVector = transform.forward * 2 + transform.up * 2;
+            droppedItem.GetComponent<ItemClass>().OnEjection(ejectionVector);
             inventorySlot[slotNumber] = null;
+            return true;
         }
-        return;
+        return false;
     }
 
     public void RemoveItem(int slotNumber) //when the player drops something up ingame
