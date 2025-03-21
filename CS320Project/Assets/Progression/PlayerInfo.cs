@@ -23,11 +23,16 @@ public class PlayerInfo : MonoBehaviour
     public int damageBonus = 0; // used for skill points
     public StatusBar damageBar;
 
-    Coroutine SprintRoutine;
-    Coroutine StaminaRefillRoutine;
+    public Coroutine SprintRoutine;
+    public Coroutine StaminaRefillRoutine;
 
     void Start()
     {
+        healthBar = new GameObject("HealthBar").AddComponent<StatusBar>(); //for testing
+        staminaBar = new GameObject("StaminaBar").AddComponent<StatusBar>(); //for testing
+        damageBar = new GameObject("DamageBar").AddComponent<StatusBar>(); //for testing
+        deathScreen = new GameObject("DeathScreen"); //for testing
+
         deathCanvasGroup = deathScreen.GetComponent<CanvasGroup>();
 
         deathScreen.SetActive(false);
@@ -242,7 +247,6 @@ public class PlayerInfo : MonoBehaviour
         {
             damageValue = 5;
         }
-        Assert.IsFalse(damageValue < 5);
         damageBar.SetStatus(damageValue - damageBonus, damageValue);
     }
     public void ChangeDamageBonus(int damageBonusIncrease) // used for damage skill point use

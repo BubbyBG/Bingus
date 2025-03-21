@@ -425,7 +425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -126.79588
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2053,15 +2053,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 109
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2266,7 +2266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa01152b2addafb46bb3c0b6f5397ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSection1: {fileID: 0}
+  firstAidKit: {fileID: 9215246179226771431, guid: 7d65d3bcbd1ec864c9baa359472ffaf3, type: 3}
+  firstAidMapSection1: {fileID: 431705256724350078}
 --- !u!4 &1828455398
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,7 +2428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8e39afeb1b7b54c8a1c4d5824e2793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointSystem: {fileID: 925761914}
+  pointSystem: {fileID: 0}
   healthPoint: {fileID: 0}
   staminaPoint: {fileID: 0}
   damagePoint: {fileID: 0}
@@ -2924,8 +2925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   selectedPoints: []
-  itemsToSpawn: 0
-  itemName: 
+  itemQuantity: 0
 --- !u!1001 &8412920153352350993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2940,15 +2940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7050504594811484061, guid: 3fb6db5c1dc35fe4bab71dc38daaf42a, type: 3}
       propertyPath: m_LocalRotation.w
