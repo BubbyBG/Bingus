@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2316889749592496797}
-  - component: {fileID: 8975977052534035222}
+  - component: {fileID: -1294812164423589181}
   m_Layer: 6
   m_Name: item_weapon_battlerifle
   m_TagString: Item
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2804599117509929816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8975977052534035222
+--- !u!114 &-1294812164423589181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6457371792441684228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac1817cda54fee458129c0ba40806a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b0568a32dc3a6499375f3748360ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   basePosition: {x: 0, y: 0, z: 0.2}
@@ -50,6 +50,9 @@ MonoBehaviour:
   guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
   held: 1
   itemName: Rifle
+  bulletType: {fileID: 0}
+  weaponCooldown: 60
+  weaponAnimation: {fileID: 0}
 --- !u!1001 &2405284441882676403
 PrefabInstance:
   m_ObjectHideFlags: 0

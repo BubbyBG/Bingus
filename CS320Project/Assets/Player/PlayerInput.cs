@@ -15,6 +15,9 @@ public class PlayerInput : MonoBehaviour
     public bool inventoryIsOpen = false;
     public int activeSlot;
     public LayerMask cantUse;
+    public Vector3 posFrom;
+    public Vector3 dirTo;
+    private Camera cam;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,11 +26,15 @@ public class PlayerInput : MonoBehaviour
         playerArms = _playerArms.GetComponent<PlayerArms>();
         inventory = GetComponent<Inventory>();
         masterHUD = _masterHUD.GetComponent<InventoryGUIControl>();
+        cam = transform.GetChild(0).GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        posFrom = cam.transform.position + Vector3.down * 0.1f; //lowered so its easily visible
+        dirTo = cam.transform.forward;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             OnItemDropKey();
@@ -100,9 +107,6 @@ public class PlayerInput : MonoBehaviour
 
     public void OnUseKey()
     {
-        Camera cam = transform.GetChild(0).GetComponent<Camera>();
-        Vector3 posFrom = cam.transform.position + Vector3.down * 0.1f; //lowered so its easily visible
-        Vector3 dirTo = cam.transform.forward;
         Debug.DrawRay(posFrom, dirTo, Color.white, 10f);
         RaycastHit hit;
         if (Physics.Raycast(posFrom, dirTo, out hit, 5f))
