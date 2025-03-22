@@ -27,4 +27,8 @@ public class AudioManager : MonoBehaviour
             Sound s = Array.Find(sounds, sound => sound.name == name); //sound where sound.name == name find the audio clip we are looking to play
             s.source.Play();
     }
+    public void Stop( string name) {
+            Sound s = Array.Find(sounds, sound => sound.name == name); //sound where sound.name == name find the audio clip we are looking to play
+            s.source.Stop();
+    }
 }
