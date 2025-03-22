@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private GameObject cameraObject;
     [SerializeField]
-    private float speedMax;
+    public float speedMax;
     [SerializeField]
     private float speedRate;
     [SerializeField]
@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
     private float verticalSpeed;
     private float cameraAngle;
     private CharacterController playerController;
-    private Vector3 currentVelocity;
+    public Vector3 currentVelocity;
     [SerializeField]
     private bool onGround;
     private Vector3 playerBottom;
@@ -44,6 +44,7 @@ public class PlayerControl : MonoBehaviour
     float jumpTimer; //
     private float snapDistance; //max distance to magnetise to floor
     public LayerMask noCollideWith;
+    public float inputForward, inputSideways;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,13 +66,13 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float inputForward, inputSideways, mouseX, mouseY;
+        float mouseX, mouseY;
         bool inputJump;
         
         if (!input.inventoryIsOpen)
         {
-            inputForward = Input.GetAxisRaw("Vertical");
-            inputSideways = Input.GetAxisRaw("Horizontal");
+            //inputForward = Input.GetAxisRaw("Vertical");
+            //inputSideways = Input.GetAxisRaw("Horizontal");
             inputJump = Input.GetKeyDown(KeyCode.Space);
             mouseX = Input.GetAxisRaw("Mouse X") * 500f; //Mouse hor rotation
             mouseY = Input.GetAxisRaw("Mouse Y") * 500f; //Mouse vert rotation

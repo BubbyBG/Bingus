@@ -1678,15 +1678,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.95527
+      value: 100.8
       objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.27
+      value: 42.13
       objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 187.99026
+      value: 199.2
       objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3902,6 +3902,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8094802cf6ae55408d79c4dd1d79493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2045742520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2045742521}
+  m_Layer: 0
+  m_Name: Asylum_Outdoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2045742521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045742520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.81968176, z: -0, w: 0.57281923}
+  m_LocalPosition: {x: 133.3, y: 41.2, z: 221.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -110.106, z: 0}
 --- !u!4 &2049421746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5327349938097161611, guid: b554f71252b1b694b876daa240aa01e8, type: 3}
@@ -4140,3 +4171,4 @@ SceneRoots:
   - {fileID: 79486568}
   - {fileID: 666708766}
   - {fileID: 794329650}
+  - {fileID: 2045742521}

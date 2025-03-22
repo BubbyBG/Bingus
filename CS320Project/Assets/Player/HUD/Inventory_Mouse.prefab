@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3829193567661982846}
   m_Layer: 0
   m_Name: Inventory_Mouse
-  m_TagString: Untagged
+  m_TagString: InventoryMouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,3 +52,4 @@ MonoBehaviour:
   iconDisplayerDef: {fileID: 2330154122814975278, guid: c80231eee0059b94ab8496d3a5ced2ad, type: 3}
   gotItem: {fileID: 0}
   player: {fileID: 0}
+  playerArms: {fileID: 0}

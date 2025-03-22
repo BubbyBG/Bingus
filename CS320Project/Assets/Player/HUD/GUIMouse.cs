@@ -6,7 +6,7 @@ public class GUIMouse : MonoBehaviour
     public GameObject grabbedItem;
     [SerializeField]
     private GameObject iconDisplayerDef;
-    private GameObject iconDisplayer;
+    public GameObject iconDisplayer;
     public GameObject gotItem;
     private InventoryGUIControl control;
     public GameObject player;
@@ -32,7 +32,7 @@ public class GUIMouse : MonoBehaviour
         }
     }
 
-    private void EventClick()
+    public void EventClick()
     {
         Vector2 mousePosition = Input.mousePosition;
         Collider2D clickedOn;
@@ -69,6 +69,61 @@ public class GUIMouse : MonoBehaviour
                     EmptyCursor();
                     PutOnCursor(gotItem);
                     control.RefreshAll();
+                }
+                playerArms.SwitchSlot();
+            }
+        }
+    }
+
+    public void EventClick(int number)
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        Collider2D clickedOn;
+        //clickedOn = Physics2D.OverlapPoint(mousePosition);
+        if (number == -1)
+        {
+            clickedOn = null;
+        }
+        else
+        {
+            clickedOn = control.transform.GetChild(1).GetChild(number).GetComponent<Collider2D>();
+        }
+
+        if (clickedOn != null) //if a 2d object was clicked on
+        {
+            GameObject _obj = clickedOn.gameObject;
+            InventoryPanel panel = _obj.GetComponent<InventoryPanel>();
+            if (panel != null) //if the 2d object was an inventory panel
+            {
+                
+                gotItem = panel.GetItem();
+                if (grabbedItem == null && gotItem != null) //empty hand, full slot; pick up item
+                {
+                    grabbedItem = gotItem;
+                    panel.RemoveItem();
+                    PutOnCursor(grabbedItem);
+                    panel.Refresh();
+                }
+                else if (grabbedItem != null && gotItem == null) //full hand, empty slot; place item
+                {
+                    panel.AddItem(grabbedItem, panel.slotNumber);
+                    grabbedItem = null;
+                    EmptyCursor();
+                    panel.Refresh();
+                }
+                else if (grabbedItem != null && gotItem != null) //full hand, full slot; swap items
+                {
+                    GameObject previouslyHeld = grabbedItem;
+                    grabbedItem = gotItem;
+                    panel.RemoveItem();
+                    panel.AddItem(previouslyHeld, panel.slotNumber);
+                    EmptyCursor();
+                    PutOnCursor(gotItem);
+                    control.RefreshAll();
+                }
+                else
+                {
+                    EmptyCursor();
                 }
                 playerArms.SwitchSlot();
             }
