@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour
     float jumpTimer; //
     private float snapDistance; //max distance to magnetise to floor
     public LayerMask noCollideWith;
-    public float inputForward, inputSideways;
+    private float inputForward, inputSideways;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,8 +71,8 @@ public class PlayerControl : MonoBehaviour
         
         if (!input.inventoryIsOpen)
         {
-            //inputForward = Input.GetAxisRaw("Vertical");
-            //inputSideways = Input.GetAxisRaw("Horizontal");
+            inputForward = Input.GetAxisRaw("Vertical");
+            inputSideways = Input.GetAxisRaw("Horizontal");
             inputJump = Input.GetKeyDown(KeyCode.Space);
             mouseX = Input.GetAxisRaw("Mouse X") * 500f; //Mouse hor rotation
             mouseY = Input.GetAxisRaw("Mouse Y") * 500f; //Mouse vert rotation
