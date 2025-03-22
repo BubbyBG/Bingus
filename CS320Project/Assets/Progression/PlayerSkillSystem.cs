@@ -1,17 +1,17 @@
 using UnityEditor;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using System.Collections;
 
 // not finished
 public class PlayerSkillSystem : MonoBehaviour
 {
-    public TMP_Text pointSystem;
-    public TMP_Text healthPoint; //incomplete
-    public TMP_Text staminaPoint;
-    public TMP_Text damagePoint;
+    public Text pointSystem;
+    // private Text healthPoint; //incomplete
+    // private Text staminaPoint;
+    // private Text damagePoint;
     private PlayerInfo playerInfo;
-    private int SkillPoints;
+    public int SkillPoints;
 
     public int EnemyDeaths;    //field to be updated from other scripts
 
@@ -24,11 +24,7 @@ public class PlayerSkillSystem : MonoBehaviour
 
     void Update()
     {
-        if (EnemyDeaths >= 4) // example metric not final
-        {
-            SkillPoints += 1;
-            EnemyDeaths -= 4;
-        }
+        IncreaseSkillPoints();
         pointSystem.text = "POINTS: " + SkillPoints;
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -46,6 +42,15 @@ public class PlayerSkillSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V)) //test
         {
             SkillPoints += 1;
+        }
+    }
+
+    private void IncreaseSkillPoints()
+    {
+        if (EnemyDeaths >= 4) // example metric not final
+        {
+            SkillPoints += 1;
+            EnemyDeaths -= 4;
         }
     }
 
