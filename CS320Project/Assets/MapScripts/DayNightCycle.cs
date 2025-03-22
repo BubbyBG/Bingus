@@ -7,24 +7,24 @@ using UnityEngine.SceneManagement;
 public class DayNightCycle : MonoBehaviour
 {
     //makes the variable appear in the inspector
-    [SerializeField] private float timeMultiplier;
-    [SerializeField]  private float startHour; 
-    private TextMeshProUGUI timeText;
+    [SerializeField] public float timeMultiplier;
+    [SerializeField] public float startHour; 
+    [SerializeField] public TextMeshProUGUI timeText;
 
 
-    [SerializeField] private Light sunLight;
-    [SerializeField] private float sunRiseHour;
-    [SerializeField] private float sunSetHour;
+    [SerializeField] public Light sunLight;
+    [SerializeField] public float sunRiseHour;
+    [SerializeField] public float sunSetHour;
 
-    [SerializeField] private Material daySkybox;
-    [SerializeField] private Material nightSkybox;
+    [SerializeField] public Material daySkybox;
+    [SerializeField] public Material nightSkybox;
 
-    private DateTime currentTime;
-    private TimeSpan sunriseTime;
-    private TimeSpan sunsetTime;
+    public DateTime currentTime;
+    public TimeSpan sunriseTime;
+    public TimeSpan sunsetTime;
 
 
-    void Start()
+    public void Start()
     {
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour); //today + offset from startHour
 
@@ -40,7 +40,7 @@ public class DayNightCycle : MonoBehaviour
         UpdateSkybox();
     }
 
-    private void UpdateTimeOfDay()
+    public void UpdateTimeOfDay()
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
 
@@ -49,7 +49,7 @@ public class DayNightCycle : MonoBehaviour
         }
     }
 
-    private void RotateSun(){
+    public void RotateSun(){
         float sunLightRotation;
 
         if(currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime){//daytime -> rotates sun from 0 to 180 degrees
@@ -74,7 +74,7 @@ public class DayNightCycle : MonoBehaviour
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
 
-    private void UpdateSkybox(){
+    public void UpdateSkybox(){
         if(currentTime.TimeOfDay >= sunriseTime && currentTime.TimeOfDay < sunsetTime){
             RenderSettings.skybox = daySkybox;
         }
@@ -83,10 +83,10 @@ public class DayNightCycle : MonoBehaviour
         }
     }
 
-    // private Light UpdateLightSettings(){
+    // public Light UpdateLightSettings(){
         //will add later
     // }
-    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
+    public static TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
     {
         TimeSpan dif = toTime - fromTime;
 
