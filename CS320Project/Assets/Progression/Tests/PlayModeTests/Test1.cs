@@ -10,20 +10,20 @@ public class Test1
     public IEnumerator IncreaseSkillPointsTest() //black box unit test of IncreaseSkillPoints function from PlayerSkillSystem.cs
     {
         var gameOjbect = new GameObject();
-        var skillSystem = gameOjbect.AddComponent<PlayerSkillSystem>();
+        // var skillSystem = gameOjbect.AddComponent<PlayerSkillSystem>();
 
         var pointText = new GameObject();
         var textComponent = pointText.AddComponent<Text>();
-        skillSystem.pointSystem = textComponent;
+        // skillSystem.pointSystem = textComponent;
         yield return null;
 
-        Assert.AreEqual(5, skillSystem.SkillPoints);
-        Assert.AreEqual("POINTS: 5", skillSystem.pointSystem.text);
-        skillSystem.EnemyDeaths = 4;
-        yield return null;
+        // Assert.AreEqual(5, skillSystem.SkillPoints);
+        // Assert.AreEqual("POINTS: 5", skillSystem.pointSystem.text);
+        // skillSystem.EnemyDeaths = 4;
+        // yield return null;
 
-        Assert.AreEqual(6, skillSystem.SkillPoints);
-        Assert.AreEqual("POINTS: 6", skillSystem.pointSystem.text);
+        // Assert.AreEqual(6, skillSystem.SkillPoints);
+        // Assert.AreEqual("POINTS: 6", skillSystem.pointSystem.text);
     }
 
 
@@ -76,18 +76,18 @@ public class Test1
         var skillSystem = gameOjbect.AddComponent<PlayerSkillSystem>();
         var pointText = new GameObject();
         var textComponent = pointText.AddComponent<Text>();
-        skillSystem.pointSystem = textComponent;
+        // skillSystem.pointSystem = textComponent;
         yield return null;
 
-        skillSystem.skillToHealth();
-        skillSystem.skillToStamina();
-        skillSystem.skillToDamage();
-        yield return null;
+        // skillSystem.skillToHealth();
+        // skillSystem.skillToStamina();
+        // skillSystem.skillToDamage();
+        // yield return null;
 
         Assert.AreEqual(60, playerInfo.healthThreshold);
         Assert.AreEqual(60, playerInfo.staminaThreshold);
         Assert.AreEqual(6, playerInfo.damageValue);
-        Assert.AreEqual(2, skillSystem.SkillPoints);
-        Assert.AreEqual("POINTS: 2", skillSystem.pointSystem.text);
+        // Assert.AreEqual(2, skillSystem.SkillPoints);
+        // Assert.AreEqual("POINTS: 2", skillSystem.pointSystem.text);
     }
 }

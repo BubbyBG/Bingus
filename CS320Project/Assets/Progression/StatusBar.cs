@@ -10,8 +10,8 @@ public class StatusBar : MonoBehaviour
 
     public void SetValueRange(int max)
     {
-        slider = new GameObject("Slider").AddComponent<Slider>(); // for testing
-        thresholdSlider = new GameObject("ThresholdSlider").AddComponent<Slider>(); // for tetsing
+        // slider = new GameObject("Slider").AddComponent<Slider>(); // for testing
+        // thresholdSlider = new GameObject("ThresholdSlider").AddComponent<Slider>(); // for tetsing
 
         slider.maxValue = max; // overall range represented in the status HUD (black bar)
         slider.minValue = 0;
@@ -22,8 +22,8 @@ public class StatusBar : MonoBehaviour
 
     public void SetStatus(int status, int thresholdStatus)
     {
-        slider = new GameObject("Slider").AddComponent<Slider>(); // for testing
-        thresholdSlider = new GameObject("ThresholdSlider").AddComponent<Slider>(); // for tetsing
+        // slider = new GameObject("Slider").AddComponent<Slider>(); // for testing
+        // thresholdSlider = new GameObject("ThresholdSlider").AddComponent<Slider>(); // for tetsing
 
         slider.value = status;
         thresholdSlider.value = thresholdStatus;

@@ -9,7 +9,7 @@ public class PlayerInfo : MonoBehaviour
 {
     public int maxRange = 100;
     public GameObject deathScreen;
-    private CanvasGroup deathCanvasGroup;
+    public CanvasGroup deathCanvasGroup;
 
     public int healthThreshold = 50; // base starting health value
     public int currentHealth;
@@ -28,12 +28,11 @@ public class PlayerInfo : MonoBehaviour
 
     void Start()
     {
-        healthBar = new GameObject("HealthBar").AddComponent<StatusBar>(); //for testing
-        staminaBar = new GameObject("StaminaBar").AddComponent<StatusBar>(); //for testing
-        damageBar = new GameObject("DamageBar").AddComponent<StatusBar>(); //for testing
-        deathScreen = new GameObject("DeathScreen"); //for testing
-
-        deathCanvasGroup = deathScreen.GetComponent<CanvasGroup>();
+        // healthBar = new GameObject("HealthBar").AddComponent<StatusBar>(); //for testing
+        // staminaBar = new GameObject("StaminaBar").AddComponent<StatusBar>(); //for testing
+        // damageBar = new GameObject("DamageBar").AddComponent<StatusBar>(); //for testing
+        // deathScreen = new GameObject("DeathScreen"); //for testing
+        // deathCanvasGroup = deathScreen.GetComponent<CanvasGroup>();
 
         deathScreen.SetActive(false);
 
@@ -94,7 +93,7 @@ public class PlayerInfo : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0; // player death game status
-            Assert.IsFalse(currentHealth == 0);
+            // Assert.IsFalse(currentHealth == 0);
             PlayerDeath();
         }
         if (currentHealth > healthThreshold)

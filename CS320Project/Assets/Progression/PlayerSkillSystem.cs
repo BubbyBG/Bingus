@@ -7,9 +7,9 @@ using System.Collections;
 public class PlayerSkillSystem : MonoBehaviour
 {
     public Text pointSystem;
-    public Text healthPoint; //incomplete
-    public Text staminaPoint;
-    public Text damagePoint;
+    // private Text healthPoint; //incomplete
+    // private Text staminaPoint;
+    // private Text damagePoint;
     private PlayerInfo playerInfo;
     public int SkillPoints;
 
