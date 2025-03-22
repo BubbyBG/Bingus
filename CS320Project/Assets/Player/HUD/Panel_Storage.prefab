@@ -168,6 +168,7 @@ MonoBehaviour:
   slotNumber: 0
   player: {fileID: 0}
   defaultImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  item: {fileID: 0}
   types: 0
 --- !u!61 &3041797240015461952
 BoxCollider2D:
