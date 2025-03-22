@@ -12,6 +12,7 @@ public class PathNode : MonoBehaviour
     //public bool connectSouth = false;
     //public bool connectEast = false;
     //public bool connectWest = false;
+    public int generation = 0;
     public PathNode north;      //The PathNode immediately to the North of this one
     public PathNode south;
     public PathNode east;
@@ -19,14 +20,20 @@ public class PathNode : MonoBehaviour
     public NodeList nodeList;   //The NodeList that responsible for this set of PathNodes
     public bool inPath;
 
-    //Constructor
-    public PathNode(PathNode north, PathNode south, PathNode east, PathNode west, NodeList nodeList)
+    //Constructors
+    public PathNode()
+    {
+        //Should return a PathNode of generation 0 with all adjacent nodes being null.
+    }
+
+    public PathNode(PathNode north, PathNode south, PathNode east, PathNode west, NodeList nodeList, int generation)
     {
         this.north = north;
         this.south = south;
         this.east = east;
         this.west = west;
         this.nodeList = nodeList;
+        this.generation = generation + 1; 
     }
 
 
@@ -36,7 +43,7 @@ public class PathNode : MonoBehaviour
         //Add deletion if too close to solid, non-player object
 
         //After deletion code, spawn PathNodes in 4 directions.
-        Spread();
+        //Spread();
     }
 
     void Update()
@@ -67,25 +74,25 @@ public class PathNode : MonoBehaviour
     //ADD COORDINATES FOR ALL NEW NODES
     private PathNode SpreadNorth()
     {
-        PathNode newNorth = new PathNode(null,this,null,null,this.nodeList);
+        PathNode newNorth = new PathNode(null,this,null,null,this.nodeList,generation);
         return newNorth;
     }
     
     private PathNode SpreadSouth()
     {
-        PathNode newSouth = new PathNode(this,null,null,null,this.nodeList);
+        PathNode newSouth = new PathNode(this,null,null,null,this.nodeList,generation);
         return newSouth;
     }
 
     private PathNode SpreadEast()
     {
-        PathNode newEast = new PathNode(null,null,null,this,this.nodeList);
+        PathNode newEast = new PathNode(null,null,null,this,this.nodeList,generation);
         return newEast;
     }
 
     private PathNode SpreadWest()
     {
-        PathNode newWest = new PathNode(null,null,this,null,this.nodeList);
+        PathNode newWest = new PathNode(null,null,this,null,this.nodeList,generation);
         return newWest;
     }
 }
