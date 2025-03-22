@@ -1267,9 +1267,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCLocation: {x: 0, y: 0, z: 0}
   Player: {fileID: 0}
+  NPCVelocity: {x: 0, y: 0, z: 0}
   NPCRadius: 1.5
+  playerDistance: 0
+  aggressionInterval: 0.2
   player: {fileID: 0}
+  travelDestination: {x: 0, y: 0, z: 0}
+  playerLocation: {x: 0, y: 0, z: 0}
   isAlive: 0
+  pathingState: 0
+  travellingState: 0
+  aggressiveState: 0
+  passiveState: 1
+  moveSpeed: 2
+  trackingRange: 10
+  aggressionRange: 3
+  attackInterval: 1
   dealtDamage: 0
 --- !u!1001 &432684891
 PrefabInstance:

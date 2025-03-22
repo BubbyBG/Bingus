@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public Button startButton;
-    public Button optionsButton;
-    public Button quitButton;
+    [SerializeField] public Button startButton;
+    [SerializeField] public Button optionsButton;
+    [SerializeField] public Button quitButton;
 
     public Transform target;
     public Camera mainCamera;
 
-    void Start()
+    public void Start()
     {   
         if (mainCamera != null && target!=null){
             mainCamera.transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
@@ -30,19 +30,19 @@ public class MainMenuManager : MonoBehaviour
     }
     
 
-    void StartGame()
+    public void StartGame()
     {
         Debug.Log("Start button clicked!");
         SceneManager.LoadScene("Main");
     }
 
-    void OpenOptions()
+    public void OpenOptions()
     {
         Debug.Log("Option button clicked!");
         SceneManager.LoadScene("OptionsScene");
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
         Debug.Log("Quit button clicked!");
         #if UNITY_EDITOR
