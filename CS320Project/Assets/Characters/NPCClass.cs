@@ -39,6 +39,8 @@ public class NPCClass : MonoBehaviour
     protected Coroutine AggressionRoutine;
     protected Coroutine BehaviorRoutine;
     public PathNode startingNode;
+    public NodeList nodelist;
+    //public GameObject nodelist;
 
     //Empty Constructor for testing purposes
     public NPCClass() {}
@@ -57,6 +59,8 @@ public class NPCClass : MonoBehaviour
             isAlive = false;
             Destroy(this,0.0f);
         }
+        //Instantiate(nodelist,transform);
+        nodelist = new NodeList();
     }
 
     // Update is called once per frame
@@ -157,9 +161,19 @@ public class NPCClass : MonoBehaviour
         while(pathingState)
         {
             //Create Nodes, find path to location
-            if(startingNode == null)
+            /*if(startingNode == null)
             {
                 startingNode = new PathNode();
+            }*/
+            if(nodelist.isEmpty)
+            {
+                nodelist.startingNode = new PathNode(this.transform.position, 0);
+                nodelist.isEmpty = false;
+                //nodelist.startingNode.Spread();
+                nodelist.startingNode.north = nodelist.startingNode.SpreadNorth();
+                nodelist.startingNode.south = nodelist.startingNode.SpreadSouth();
+                nodelist.startingNode.east = nodelist.startingNode.SpreadEast();
+                nodelist.startingNode.west = nodelist.startingNode.SpreadWest();
             }
         }
     }

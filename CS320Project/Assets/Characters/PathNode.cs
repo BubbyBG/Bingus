@@ -1,6 +1,5 @@
 using UnityEngine;
     
-        //CAUTION: THIS WILL CURRENTLY SPREAD WITHOUT ENDING.
         //Once complete, it will stop upon finding the player or if the player moves out of range.
         //For now, do not use this.
 
@@ -18,12 +17,22 @@ public class PathNode : MonoBehaviour
     public PathNode east;
     public PathNode west;
     public NodeList nodeList;   //The NodeList that responsible for this set of PathNodes
-    public bool inPath;
+    public bool inPath = false;
+    public bool hasNotSpreadNorth = true;  //Can't check a Monobehaviour for being null, this is a workaround.
+    public bool hasNotSpreadSouth = true;
+    public bool hasNotSpreadEast = true;
+    public bool hasNotSpreadWest = true;
 
     //Constructors
     public PathNode()
     {
         //Should return a PathNode of generation 0 with all adjacent nodes being null.
+    }
+
+    public PathNode(Vector3 nodeLocation, int generation)
+    {
+        this.transform.position = nodeLocation;
+        this.generation += generation;
     }
 
     public PathNode(PathNode north, PathNode south, PathNode east, PathNode west, NodeList nodeList, int generation)
@@ -51,48 +60,62 @@ public class PathNode : MonoBehaviour
 
     }
 
-    private void Spread()
+    public void Spread()
     {
-        if(north == null)
+        if(hasNotSpreadNorth)
         {
             north = SpreadNorth();
+            hasNotSpreadNorth = false;
         }
-        if(south == null)
+
+        if(hasNotSpreadSouth)
         {
             south = SpreadSouth();
+            hasNotSpreadSouth = false;
         }
-        if(east == null)
+
+        if(hasNotSpreadEast)
         {
             east = SpreadEast();
+            hasNotSpreadEast = false;
         }
-        if(west == null)
+
+        if(hasNotSpreadWest)
         {
             west = SpreadWest();
+            hasNotSpreadWest = false;
         }
     }
 
-    //ADD COORDINATES FOR ALL NEW NODES
-    private PathNode SpreadNorth()
+    public PathNode SpreadNorth()
     {
-        PathNode newNorth = new PathNode(null,this,null,null,this.nodeList,generation);
+        PathNode newNorth = new PathNode(nodeLocation + Vector3.forward, 1);
+        newNorth.hasNotSpreadSouth = false;
+        newNorth.south = this;
         return newNorth;
     }
     
-    private PathNode SpreadSouth()
+    public PathNode SpreadSouth()
     {
-        PathNode newSouth = new PathNode(this,null,null,null,this.nodeList,generation);
+        PathNode newSouth = new PathNode(nodeLocation + Vector3.back, 1);
+        newSouth.hasNotSpreadNorth = false;
+        newSouth.north = this;
         return newSouth;
     }
 
-    private PathNode SpreadEast()
+    public PathNode SpreadEast()
     {
-        PathNode newEast = new PathNode(null,null,null,this,this.nodeList,generation);
+        PathNode newEast = new PathNode(nodeLocation + Vector3.right, 1);
+        newEast.hasNotSpreadWest = false;
+        newEast.west = this;
         return newEast;
     }
 
-    private PathNode SpreadWest()
+    public PathNode SpreadWest()
     {
-        PathNode newWest = new PathNode(null,null,this,null,this.nodeList,generation);
+        PathNode newWest = new PathNode(nodeLocation + Vector3.left, 1);
+        newWest.hasNotSpreadEast = false;
+        newWest.east = this;
         return newWest;
     }
 }

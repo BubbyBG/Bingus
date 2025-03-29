@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5350971167689596565
+--- !u!1 &6785057323489136303
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8767115482202104572}
-  - component: {fileID: 1025460586797374051}
-  - component: {fileID: 3717510628115554716}
-  - component: {fileID: 1700644694662251025}
+  - component: {fileID: 1917057168891326731}
+  - component: {fileID: 1851754865059658322}
+  - component: {fileID: 5919868094583509388}
+  - component: {fileID: 4748230255117455814}
+  - component: {fileID: 9166377889181665186}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NodeListObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8767115482202104572
+--- !u!4 &1917057168891326731
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350971167689596565}
+  m_GameObject: {fileID: 6785057323489136303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,21 +35,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1025460586797374051
+--- !u!33 &1851754865059658322
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350971167689596565}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3717510628115554716
+  m_GameObject: {fileID: 6785057323489136303}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5919868094583509388
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350971167689596565}
+  m_GameObject: {fileID: 6785057323489136303}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,39 +88,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1700644694662251025
+--- !u!135 &4748230255117455814
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785057323489136303}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9166377889181665186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5350971167689596565}
+  m_GameObject: {fileID: 6785057323489136303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be57bf53c1d35f4395cfb63dbc66839, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b6d4586020378b49acfd83333986eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCLocation: {x: 0, y: 0, z: 0}
-  Player: {fileID: 0}
-  NPCRadius: 1.5
-  playerDistance: 0
-  aggressionInterval: 0.2
-  player: {fileID: 0}
-  travelDestination: {x: 0, y: 0, z: 0}
-  playerLocation: {x: 0, y: 0, z: 0}
-  isAlive: 0
-  healthPoints: 10
-  pathingState: 0
-  travellingState: 0
-  aggressiveState: 0
-  passiveState: 1
-  testFlagA: 0
-  testFlagB: 0
-  testFlagC: 0
-  moveSpeed: 2
-  trackingRange: 10
-  aggressionRange: 3
-  attackInterval: 1
-  dealtDamage: 1
+  npcLocation: {x: 0, y: 0, z: 0}
   startingNode: {fileID: -8612925640273495326, guid: 14eb36900e4bbd646b2039a0f3b7e0e4, type: 3}
-  nodelist: {fileID: 9166377889181665186, guid: cefe791224468bb4dae461819560b286, type: 3}
+  targetFound: 0
+  isEmpty: 1
