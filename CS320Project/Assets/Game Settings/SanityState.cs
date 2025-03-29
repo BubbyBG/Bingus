@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 public class SanityState : MonoBehaviour
 {
 
@@ -15,17 +16,24 @@ public class SanityState : MonoBehaviour
     public bool losingSanity = false; //true if losing sanity, false if not losing
     private bool isFPressed = false;
 
+    public Volume post_process_volume;
+    private Vignette vignette;
+    private FilmGrain grain;
     public PlayerArms player_arms;
     public MusicItem music_player;
     public GameObject music_item;
 
     void Start()
     {
+        post_process_volume.profile.TryGet(out vignette);
+        post_process_volume.profile.TryGet(out grain);
+
         rate = 1f;
         sanitySlider.value = sanityValues.maxSanity;
         sanityValues.currentSanity = sanitySlider.value;
         //music_player = FindAnyObjectByType<MusicItem>();
         player_arms = FindAnyObjectByType<PlayerArms>();
+        startSanityLoss();
     }
 
     // Update is called once per frame
@@ -39,6 +47,9 @@ public class SanityState : MonoBehaviour
         */
         isFPressed = Input.GetKeyDown("f");
         playMusic(isFPressed);
+        if( sanityValues.currentSanity == 0.0f) {
+
+        }
         
     }
 
@@ -74,6 +85,12 @@ public class SanityState : MonoBehaviour
            
             yield return null;
         }
+        vignette.intensity.value = 1f;
+        vignette.smoothness.value = 0.7f;
+        grain.intensity.value = 1f;
+        grain.response.value = 1f;
+
+
         
     }
     IEnumerator gainSanity(float rate) {
@@ -83,6 +100,11 @@ public class SanityState : MonoBehaviour
             sanitySlider.value = sanityValues.currentSanity * rate;
             yield return null;
         }
+        vignette.intensity.value = 0f;
+        vignette.smoothness.value = 0f;
+        grain.intensity.value = 0f;
+        grain.response.value = 0f;
+
     }
    
 
