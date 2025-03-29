@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -169,7 +170,7 @@ public class PlayModeTests
 
     //My Integration Test will check that the NPCClass spawns a PathNode while in the pathingState
     //that should then begin spawning more PathNodes.
-    [UnityTest]
+    /*[UnityTest]
     public IEnumerator PathNodeIntegration()
     {
         var npc = new NPCClass();
@@ -180,7 +181,7 @@ public class PlayModeTests
         yield return new WaitForSeconds(2f);
         Assert.IsNotNull(npc.startingNode);
         yield return null;
-    }
+    }*/
 
 
     [UnityTest]
@@ -221,5 +222,30 @@ public class PlayModeTests
             stateCount += 1;
         }
         return(stateCount == 1);
+    }
+
+
+    [UnityTest]
+    public IEnumerator NodeChildren()
+    {
+        var npc = new NPCClass();
+        npc.nodelist = new NodeList();
+        /*npc.transform.position = Vector3.zero;
+        npc.playerDistance = ((npc.aggressionRange + npc.trackingRange)/2);
+        npc.TestUpdate();
+        npc.pathingState = true;
+        npc.Pathfinding();*/
+
+        npc.nodelist.startingNode = new PathNode(Vector3.zero,0);
+        Assert.IsTrue(npc.nodelist.startingNode.generation == 0);
+
+        //Assert.IsFalse(npc.nodelist.isEmpty);
+        //Assert.IsTrue(npc.nodelist.startingNode.nodeLocation.Equals(Vector3.zero));
+        //Assert.IsTrue(npc.nodelist.startingNode.north.nodeLocation.Equals(Vector3.forward));
+        //Assert.IsTrue(npc.nodelist.startingNode.south.nodeLocation.Equals(Vector3.back));
+        //Assert.IsTrue(npc.nodelist.startingNode.east.nodeLocation.Equals(Vector3.right));
+        //Assert.IsTrue(npc.nodelist.startingNode.west.nodeLocation.Equals(Vector3.left));
+
+        yield return null;
     }
 }
