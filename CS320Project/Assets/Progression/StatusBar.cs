@@ -6,6 +6,8 @@ public class StatusBar : MonoBehaviour
 {
     public Slider slider;
     public Slider thresholdSlider;
+    public Image sliderFill;
+    public Color fillColor;
 
 
     public void SetValueRange(int max)
@@ -20,11 +22,12 @@ public class StatusBar : MonoBehaviour
         thresholdSlider.minValue = 0;
     }
 
-    public void SetStatus(int status, int thresholdStatus)
+    public void SetStatus(int status, int thresholdStatus, string htmlColor)
     {
         // slider = new GameObject("Slider").AddComponent<Slider>(); // for testing
         // thresholdSlider = new GameObject("ThresholdSlider").AddComponent<Slider>(); // for tetsing
-
+        ColorUtility.TryParseHtmlString(htmlColor, out fillColor);
+        sliderFill.color = fillColor;
         slider.value = status;
         thresholdSlider.value = thresholdStatus;
     }
