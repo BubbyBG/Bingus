@@ -70,4 +70,9 @@ public class PlayerArms : MonoBehaviour
         heldItemType = inventory.GetItem(input.activeSlot);
         EquipItem();
     }
+
+    public GameObject GetHeldItem()
+    {
+        return heldItemType;
+    }
 }
