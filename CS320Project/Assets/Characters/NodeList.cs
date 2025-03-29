@@ -8,6 +8,7 @@ public class NodeList : MonoBehaviour
     public Vector3 npcLocation; //Use this as location of startingNode.
     public PathNode startingNode;
     public bool targetFound = false;
+    public bool isEmpty = true;
 
 
     void Start()
