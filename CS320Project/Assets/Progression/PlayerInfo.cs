@@ -14,14 +14,23 @@ public class PlayerInfo : MonoBehaviour
     public int healthThreshold = 50; // base starting health value
     public int currentHealth;
     public StatusBar healthBar;
+    private string currentHealthColor;
+    private string healthColor1 = "#0E940F"; // full
+    private string healthColor2 = "#FFDE0F";
+    private string healthColor3 = "#E47413";
+    private string healthColor4 = "#B7120A"; // low 
+
+
 
     public int staminaThreshold = 50; // base starting stamina value. threshold which stamina refills to.
     public int currentStamina; // decreases with sprinting. refills with walking.
     public StatusBar staminaBar;
+    private string staminaColor1 = "#CEC400";
 
     public int damageValue = 5;
     public int damageBonus = 0; // used for skill points
     public StatusBar damageBar;
+    private string damageColor1 = "#C332CD";
 
     public Coroutine SprintRoutine;
     public Coroutine StaminaRefillRoutine;
@@ -38,16 +47,16 @@ public class PlayerInfo : MonoBehaviour
 
         currentHealth = healthThreshold;
         healthBar.SetValueRange(maxRange);
-        healthBar.SetStatus(currentHealth, healthThreshold);
+        healthBar.SetStatus(currentHealth, healthThreshold, healthColor1);
 
         currentStamina = staminaThreshold;
         healthBar.SetValueRange(maxRange);
-        staminaBar.SetStatus(currentStamina, staminaThreshold);
+        staminaBar.SetStatus(currentStamina, staminaThreshold, staminaColor1);
         SprintRoutine = null;
         StaminaRefillRoutine = null;
 
         healthBar.SetValueRange(maxRange);
-        damageBar.SetStatus(damageValue, damageValue);
+        damageBar.SetStatus(damageValue, damageValue, damageColor1);
     }
 
     void Update()  // status change tests
@@ -89,6 +98,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void ChangeHealth(int health) // used when taking damage, using first aid kits, other effects.
     {
+        currentHealthColor = healthColor1;
         currentHealth += health;
         if (currentHealth <= 0)
         {
@@ -100,7 +110,23 @@ public class PlayerInfo : MonoBehaviour
         {
             currentHealth = healthThreshold;
         }
-        healthBar.SetStatus(currentHealth, healthThreshold);
+        if (currentHealth > healthThreshold * 0.75)
+        {
+            currentHealthColor = healthColor1;
+        }
+        else if (currentHealth > healthThreshold * 0.5)
+        {
+            currentHealthColor = healthColor2;
+        }
+        else if (currentHealth > healthThreshold * 0.25)
+        {
+            currentHealthColor = healthColor3;
+        }
+        else
+        {
+            currentHealthColor = healthColor4;
+        }
+        healthBar.SetStatus(currentHealth, healthThreshold, currentHealthColor);
     }
 
     public void ChangeHealthThreshold(int healthThresholdIncrease)
@@ -112,7 +138,7 @@ public class PlayerInfo : MonoBehaviour
             {
                 healthThreshold = maxRange;
             }
-            healthBar.SetStatus(currentHealth, healthThreshold);
+            ChangeHealth(0);
         }
         else
         {
@@ -153,7 +179,7 @@ public class PlayerInfo : MonoBehaviour
         {
             currentStamina = staminaThreshold;
         }
-        staminaBar.SetStatus(currentStamina, staminaThreshold);
+        staminaBar.SetStatus(currentStamina, staminaThreshold, staminaColor1);
     }
 
     public void ChangeStaminaThreshold(int staminaThresholdIncrease) // non-incremental changes. used in player progression
@@ -165,7 +191,7 @@ public class PlayerInfo : MonoBehaviour
             {
                 staminaThreshold = maxRange;
             }
-            staminaBar.SetStatus(currentStamina, staminaThreshold);
+            staminaBar.SetStatus(currentStamina, staminaThreshold, staminaColor1);
         }
         else
         {
@@ -246,7 +272,7 @@ public class PlayerInfo : MonoBehaviour
         {
             damageValue = 5;
         }
-        damageBar.SetStatus(damageValue - damageBonus, damageValue);
+        damageBar.SetStatus(damageValue - damageBonus, damageValue, damageColor1);
     }
     public void ChangeDamageBonus(int damageBonusIncrease) // used for damage skill point use
     {
