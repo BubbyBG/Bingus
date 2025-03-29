@@ -16,6 +16,19 @@ public class ProjectileClass : MonoBehaviour
 
     public void Shoot(Vector3 posFrom, Vector3 dirTo)
     {
-        Debug.DrawRay(posFrom, dirTo, Color.white, 10f);
+        Debug.DrawRay(posFrom, dirTo, Color.white, 100f);
+        RaycastHit hit;
+        if (Physics.Raycast(posFrom, dirTo, out hit, 100f))
+        {
+            
+            print(hit.transform.gameObject.ToString());
+            Debug.DrawLine(hit.point, hit.point + hit.normal * 2f);
+            ItemClass hitThing = hit.transform.GetComponent<ItemClass>();
+            if (hitThing != null)
+            {
+                //create particle effect
+                
+            }
+        }
     }
 }

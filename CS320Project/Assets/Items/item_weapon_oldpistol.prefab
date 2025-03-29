@@ -51,7 +51,7 @@ MonoBehaviour:
   guiSprite: {fileID: 21300000, guid: 7a2cf29011bdb1c47af5d457cad70223, type: 3}
   held: 1
   itemName: Old Pistol
-  bulletType: {fileID: 0}
+  bulletType: {fileID: 3092559259561346188, guid: e5ba635984e9cb24dbd8fe4b33bed698, type: 3}
   weaponCooldown: 120
   weaponAnimation: {fileID: 0}
 --- !u!1 &7687617981724513058

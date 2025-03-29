@@ -88,7 +88,7 @@ public class SanityState : MonoBehaviour
 
     public void playMusic(bool isFPressed) {
 
-        if(player_arms.heldItemType != music_item) {
+        if(player_arms.GetHeldItem() != music_item) {
             FindAnyObjectByType<AudioManager>().Stop("Creep");
             print("starting sanity loss");
             startSanityLoss();

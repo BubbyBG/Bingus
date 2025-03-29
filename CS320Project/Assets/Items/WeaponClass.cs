@@ -17,8 +17,9 @@ public class WeaponClass : ItemClass //inherits from ItemClass
         melee,
         gun,
     }
-
+    [SerializeField]
     private float cooldownTimer;
+    [SerializeField]
     private bool canUse; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,11 +37,16 @@ public class WeaponClass : ItemClass //inherits from ItemClass
     {
         if (!canUse)
         {
-            cooldownTimer -= 1f * Time.deltaTime;
+            cooldownTimer -= 120f * Time.deltaTime;
         }
         else
         {
             cooldownTimer = 0f;
+        }
+
+        if (cooldownTimer < 0)
+        {
+            canUse = true;
         }
 
         if (Input.GetMouseButton(0))
@@ -64,6 +70,5 @@ public class WeaponClass : ItemClass //inherits from ItemClass
     public void Equip()
     {
         active = true;
-        
     }
 }

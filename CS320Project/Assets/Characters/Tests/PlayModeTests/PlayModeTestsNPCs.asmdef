@@ -1,5 +1,5 @@
 {
-    "name": "PlayModeTests",
+    "name": "PlayModeTestsNPCs",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
