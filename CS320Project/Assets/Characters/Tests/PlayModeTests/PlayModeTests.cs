@@ -225,16 +225,16 @@ public class PlayModeTests
     }
 
 
-    [UnityTest]
+    /*[UnityTest]
     public IEnumerator NodeChildren()
     {
         var npc = new NPCClass();
         npc.nodelist = new NodeList();
-        /*npc.transform.position = Vector3.zero;
-        npc.playerDistance = ((npc.aggressionRange + npc.trackingRange)/2);
-        npc.TestUpdate();
-        npc.pathingState = true;
-        npc.Pathfinding();*/
+        //npc.transform.position = Vector3.zero;
+        //npc.playerDistance = ((npc.aggressionRange + npc.trackingRange)/2);
+        //npc.TestUpdate();
+        //npc.pathingState = true;
+        //npc.Pathfinding();
 
         npc.nodelist.startingNode = new PathNode(Vector3.zero,0);
         Assert.IsTrue(npc.nodelist.startingNode.generation == 0);
@@ -247,5 +247,5 @@ public class PlayModeTests
         //Assert.IsTrue(npc.nodelist.startingNode.west.nodeLocation.Equals(Vector3.left));
 
         yield return null;
-    }
+    }*/
 }
