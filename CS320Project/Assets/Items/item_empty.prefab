@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8974676977305208581}
   - component: {fileID: 4926680577671732595}
+  - component: {fileID: -4921081691927992721}
   m_Layer: 6
   m_Name: item_empty
   m_TagString: Untagged
@@ -49,3 +50,25 @@ MonoBehaviour:
   guiSprite: {fileID: 0}
   held: 0
   itemName: 
+--- !u!95 &-4921081691927992721
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664289891072597412}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da2892ff239f6f3469f583ed1ec77ccc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

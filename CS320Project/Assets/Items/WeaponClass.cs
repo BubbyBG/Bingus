@@ -7,11 +7,21 @@ public class WeaponClass : ItemClass //inherits from ItemClass
     private Inventory inventory;
     private PlayerInput input;
     private bool active;
+    private Animation _animation;
+    private Animation weaponAnimation;
+    [SerializeField]
+    private AnimationClip anim_recoil;
+    [SerializeField]
+    private AnimationClip anim_equip;
+    private AudioSource audioS;
 
     //Gun stats
     public GameObject bulletType;
+    public GameObject fireEffect;
     public float weaponCooldown;
-    public Animation weaponAnimation;
+    public Sound soundFire;
+    public Sound soundEquip;
+    
     public enum weaponType
     {
         melee,
@@ -30,6 +40,8 @@ public class WeaponClass : ItemClass //inherits from ItemClass
         inventory = player.GetComponent<Inventory>();
         input = player.GetComponent<PlayerInput>();
         active = false;
+        _animation = transform.GetChild(0).GetComponent<Animation>();
+        _animation.clip = anim_recoil;
     }
 
     // Update is called once per frame
@@ -65,6 +77,9 @@ public class WeaponClass : ItemClass //inherits from ItemClass
         Vector3 muzzle = transform.GetChild(1).position;
         GameObject projectile = Instantiate(bulletType, muzzle, transform.rotation);
         projectile.GetComponent<ProjectileClass>().Shoot(input.posFrom, input.dirTo);
+        _animation.Play();
+        GameObject muzzleFlash = Instantiate(fireEffect, muzzle, transform.rotation);
+        //audioS.Play(soundFire);
     }
 
     public void Equip()
