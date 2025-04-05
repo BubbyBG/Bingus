@@ -33,6 +33,9 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("Start button clicked!");
+        //setting up spawn points
+        // SceneTransitionData.spawnPointName = "AsylumEntry";
+        // SceneManager.LoadScene("AsylumScene");
         SceneManager.LoadScene("Main");
     }
 
