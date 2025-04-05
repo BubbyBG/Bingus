@@ -7,10 +7,6 @@ public class PathNode : MonoBehaviour
 {
     //Fields
     public Vector3 nodeLocation;
-    //public bool connectNorth = false;
-    //public bool connectSouth = false;
-    //public bool connectEast = false;
-    //public bool connectWest = false;
     public int generation = 0;
     public PathNode north;      //The PathNode immediately to the North of this one
     public PathNode south;
@@ -22,8 +18,10 @@ public class PathNode : MonoBehaviour
     public bool hasNotSpreadSouth = true;
     public bool hasNotSpreadEast = true;
     public bool hasNotSpreadWest = true;
+    public int xCoord;
+    public int yCoord;
 
-    //Constructors
+    //Constructors (No longer necessary?)
     public PathNode()
     {
         //Should return a PathNode of generation 0 with all adjacent nodes being null.
@@ -49,10 +47,6 @@ public class PathNode : MonoBehaviour
     void Start()
     {
         nodeLocation = this.transform.position;
-        //Add deletion if too close to solid, non-player object
-
-        //After deletion code, spawn PathNodes in 4 directions.
-        //Spread();
     }
 
     void Update()
@@ -60,7 +54,7 @@ public class PathNode : MonoBehaviour
 
     }
 
-    public void Spread()
+    public void Spread()    //Deprecated Method
     {
         if(hasNotSpreadNorth)
         {
@@ -87,7 +81,7 @@ public class PathNode : MonoBehaviour
         }
     }
 
-    public PathNode SpreadNorth()
+    public PathNode SpreadNorth()   //Deprecated Method
     {
         PathNode newNorth = new PathNode(nodeLocation + Vector3.forward, 1);
         newNorth.hasNotSpreadSouth = false;
@@ -95,7 +89,7 @@ public class PathNode : MonoBehaviour
         return newNorth;
     }
     
-    public PathNode SpreadSouth()
+    public PathNode SpreadSouth()   //Deprecated Method
     {
         PathNode newSouth = new PathNode(nodeLocation + Vector3.back, 1);
         newSouth.hasNotSpreadNorth = false;
@@ -103,7 +97,7 @@ public class PathNode : MonoBehaviour
         return newSouth;
     }
 
-    public PathNode SpreadEast()
+    public PathNode SpreadEast()    //Deprecated Method
     {
         PathNode newEast = new PathNode(nodeLocation + Vector3.right, 1);
         newEast.hasNotSpreadWest = false;
@@ -111,7 +105,7 @@ public class PathNode : MonoBehaviour
         return newEast;
     }
 
-    public PathNode SpreadWest()
+    public PathNode SpreadWest()    //Deprecated Method
     {
         PathNode newWest = new PathNode(nodeLocation + Vector3.left, 1);
         newWest.hasNotSpreadEast = false;

@@ -60,7 +60,8 @@ public class NPCClass : MonoBehaviour
             Destroy(this,0.0f);
         }
         //Instantiate(nodelist,transform);
-        nodelist = new NodeList();
+        nodelist = Instantiate(nodelist);
+        nodelist.transform.position = this.transform.position;
     }
 
     // Update is called once per frame
@@ -160,21 +161,13 @@ public class NPCClass : MonoBehaviour
     {
         while(pathingState)
         {
-            //Create Nodes, find path to location
-            /*if(startingNode == null)
+            //Find path to location using nodes
+            if(!nodelist.isUpdated)
             {
-                startingNode = new PathNode();
-            }*/
-            if(nodelist.isEmpty)
-            {
-                nodelist.startingNode = new PathNode(this.transform.position, 0);
-                nodelist.isEmpty = false;
-                //nodelist.startingNode.Spread();
-                nodelist.startingNode.north = nodelist.startingNode.SpreadNorth();
-                nodelist.startingNode.south = nodelist.startingNode.SpreadSouth();
-                nodelist.startingNode.east = nodelist.startingNode.SpreadEast();
-                nodelist.startingNode.west = nodelist.startingNode.SpreadWest();
+                nodelist.transform.position = this.transform.position;
+                nodelist.UpdateNodes();
             }
+            //Implement Dijkstra's here.
         }
     }
 
