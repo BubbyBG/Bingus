@@ -250,7 +250,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (currentStamina == 0)
         { // penalize player if stamina gets too low
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3); // calling sprint while penalty wait is occurring will 
         }
         while ((currentStamina < staminaThreshold))
         {
