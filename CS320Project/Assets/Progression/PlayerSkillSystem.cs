@@ -10,22 +10,35 @@ public class PlayerSkillSystem : MonoBehaviour
     // private Text healthPoint; //incomplete
     // private Text staminaPoint;
     // private Text damagePoint;
+
+    private string skillTextColor1 = "#990000"; // no points
+    private string skillTextColor2 = "#60F0D9"; // points
+    public Color skillColor;
+
     private PlayerInfo playerInfo;
     public int SkillPoints;
-
     public int EnemyDeaths;    //field to be updated from other scripts
 
     void Start()
     {
         playerInfo = GetComponent<PlayerInfo>();
         SkillPoints = 5;
-        pointSystem.text = "POINTS: " + SkillPoints;
+        pointSystem.text = "  " + SkillPoints;
+        changeSkillColor(skillTextColor2);
     }
 
     void Update()
     {
         IncreaseSkillPoints();
-        pointSystem.text = "POINTS: " + SkillPoints;
+        pointSystem.text = "  " + SkillPoints;
+        if (SkillPoints > 0)
+        {
+            changeSkillColor(skillTextColor2);
+        }
+        else
+        {
+            changeSkillColor(skillTextColor1);
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -43,6 +56,12 @@ public class PlayerSkillSystem : MonoBehaviour
         {
             SkillPoints += 1;
         }
+    }
+
+    private void changeSkillColor(string htmlColor)
+    {
+        ColorUtility.TryParseHtmlString(htmlColor, out skillColor);
+        pointSystem.color = skillColor;
     }
 
     private void IncreaseSkillPoints()
