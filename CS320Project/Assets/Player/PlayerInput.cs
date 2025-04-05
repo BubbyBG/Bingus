@@ -111,8 +111,9 @@ public class PlayerInput : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(posFrom, dirTo, out hit, 5f))
         {
+            GameObject hitObject = hit.transform.gameObject;
             print(hit.transform.gameObject.ToString());// ToString());
-            ItemClass hitThing = hit.transform.GetComponent<ItemClass>();
+            ItemClass hitThing = hitObject.GetComponent<ItemClass>();
             if (hitThing != null)
             {
                 if (inventory.AddItem(hit.transform.gameObject)) //if inventory has an empty slot
@@ -121,6 +122,12 @@ public class PlayerInput : MonoBehaviour
                     Destroy(hitThing.gameObject);
                     masterHUD.RefreshAll();
                 }
+            }
+
+            IInteractable interactable = hitObject.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
             }
         }
     }
