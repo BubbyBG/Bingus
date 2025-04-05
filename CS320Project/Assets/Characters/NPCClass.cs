@@ -60,7 +60,8 @@ public class NPCClass : MonoBehaviour
             Destroy(this,0.0f);
         }
         //Instantiate(nodelist,transform);
-        nodelist = new NodeList();
+        nodelist = Instantiate(nodelist);
+        nodelist.transform.position = this.transform.position;
     }
 
     // Update is called once per frame
@@ -163,6 +164,7 @@ public class NPCClass : MonoBehaviour
             //Find path to location using nodes
             if(!nodelist.isUpdated)
             {
+                nodelist.transform.position = this.transform.position;
                 nodelist.UpdateNodes();
             }
             //Implement Dijkstra's here.
