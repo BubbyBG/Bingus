@@ -1,14 +1,12 @@
 using UnityEngine;
 
-public class WeaponClass : ItemClass //inherits from ItemClass
+public class WeaponClass : MonoBehaviour
 {
     //Unity References
     private GameObject player;
     private Inventory inventory;
     private PlayerInput input;
-    private bool active;
-    private Animation _animation;
-    private Animation weaponAnimation;
+    private Animator _animation;
     [SerializeField]
     private AnimationClip anim_recoil;
     [SerializeField]
@@ -19,15 +17,14 @@ public class WeaponClass : ItemClass //inherits from ItemClass
     public GameObject bulletType;
     public GameObject fireEffect;
     public float weaponCooldown;
-    public Sound soundFire;
-    public Sound soundEquip;
+    //public Sound soundFire;
+    //public Sound soundEquip;
     
     public enum weaponType
     {
         melee,
         gun,
     }
-    [SerializeField]
     private float cooldownTimer;
     [SerializeField]
     private bool canUse; 
@@ -39,9 +36,10 @@ public class WeaponClass : ItemClass //inherits from ItemClass
         player = GameObject.FindGameObjectWithTag("Player");
         inventory = player.GetComponent<Inventory>();
         input = player.GetComponent<PlayerInput>();
-        active = false;
-        _animation = transform.GetChild(0).GetComponent<Animation>();
-        _animation.clip = anim_recoil;
+        _animation = GetComponent<Animator>();
+        //_animation = transform.GetChild(0).GetComponent<Animation>();
+        //_animation.clip = anim_recoil;
+        cooldownTimer = 0;
     }
 
     // Update is called once per frame
@@ -60,30 +58,30 @@ public class WeaponClass : ItemClass //inherits from ItemClass
         {
             canUse = true;
         }
-
-        if (Input.GetMouseButton(0))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (canUse)
-            {
-                UseWeaponPrimary();
-                cooldownTimer = weaponCooldown;
-                canUse = false;
-            }
+            _animation.Play("Fire");
         }
     }
 
-    void UseWeaponPrimary()
+    public void UseWeaponPrimary()
     {
-        Vector3 muzzle = transform.GetChild(1).position;
-        GameObject projectile = Instantiate(bulletType, muzzle, transform.rotation);
-        projectile.GetComponent<ProjectileClass>().Shoot(input.posFrom, input.dirTo);
-        _animation.Play();
-        GameObject muzzleFlash = Instantiate(fireEffect, muzzle, transform.rotation);
-        //audioS.Play(soundFire);
+        if (canUse)
+        {
+            Vector3 muzzle = transform.GetChild(1).position;
+            GameObject projectile = Instantiate(bulletType, muzzle, transform.rotation);
+            projectile.GetComponent<ProjectileClass>().Shoot(input.posFrom, input.dirTo);
+            //_animation.Play("gun_model|Recoil");
+            _animation.Play("Fire");
+            GameObject muzzleFlash = Instantiate(fireEffect, muzzle, transform.rotation);
+            //audioS.Play(soundFire);
+            cooldownTimer = weaponCooldown;
+            canUse = false;
+        }
     }
 
     public void Equip()
     {
-        active = true;
+
     }
 }

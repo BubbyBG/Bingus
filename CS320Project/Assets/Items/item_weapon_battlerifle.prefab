@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2316889749592496797}
+  - component: {fileID: -8240340659000758821}
   - component: {fileID: -1294812164423589181}
   m_Layer: 6
   m_Name: item_weapon_battlerifle
@@ -65,6 +66,25 @@ Transform:
   - {fileID: 3424393732555176935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8240340659000758821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457371792441684228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac1817cda54fee458129c0ba40806a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePosition: {x: 0, y: 0, z: 0}
+  baseAngle: {x: 0, y: 90, z: 0}
+  guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
+  inWorldSpace: 1
+  held: 0
+  itemName: Battle Rifle
+  type: 1
 --- !u!114 &-1294812164423589181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,14 +97,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b0568a32dc3a6499375f3748360ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePosition: {x: 0, y: 0, z: 0.2}
-  baseAngle: {x: 0, y: 96.32, z: 0}
-  guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
-  held: 1
-  itemName: Rifle
+  anim_recoil: {fileID: 0}
+  anim_equip: {fileID: 0}
   bulletType: {fileID: 3092559259561346188, guid: e5ba635984e9cb24dbd8fe4b33bed698, type: 3}
+  fireEffect: {fileID: 6779395864132759935, guid: e1e5519143e1c9a46854e4b1f512544f, type: 3}
   weaponCooldown: 60
-  weaponAnimation: {fileID: 0}
+  soundFire:
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
+  soundEquip:
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    source: {fileID: 0}
+  canUse: 1
 --- !u!1001 &2405284441882676403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,10 +170,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8988641748838138107}
   m_SourcePrefab: {fileID: 100100000, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
 --- !u!4 &2804599117509929816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
   m_PrefabInstance: {fileID: 2405284441882676403}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3287663621596639714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1b7f1fd92eb0f5246967cd2fc56ad5dd, type: 3}
+  m_PrefabInstance: {fileID: 2405284441882676403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &8988641748838138107
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287663621596639714}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0

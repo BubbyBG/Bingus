@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blankObjectDefinition: {fileID: 2664289891072597412, guid: 46d4de03f1959b34fa33f288f3fbdd23, type: 3}
+  input: {fileID: 0}
   updateArms: 0
   maxSwayStanding: 0.11
   maxSwayWalking: 0.11
@@ -272,8 +273,12 @@ MonoBehaviour:
   gravityForce: 20
   jumpForce: 10
   verticalSpeed: 0
+  currentVelocity: {x: 0, y: 0, z: 0}
   onGround: 0
   hasJumped: 0
+  noCollideWith:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &6604322574690043497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,20 +292,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlot:
-  - {fileID: 848925352542126966, guid: 239e0c1fcf16b3b41be43bd41a0fb48b, type: 3}
-  - {fileID: 6457371792441684228, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
-  - {fileID: 848925352542126966, guid: 239e0c1fcf16b3b41be43bd41a0fb48b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 6457371792441684228, guid: 9a4400f43cb1833438da8262251cd5d9, type: 3}
-  - {fileID: 0}
-  - {fileID: 848925352542126966, guid: 239e0c1fcf16b3b41be43bd41a0fb48b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 6457371792441684228, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -323,6 +328,11 @@ MonoBehaviour:
   _masterHUD: {fileID: 0}
   inventoryIsOpen: 0
   activeSlot: 0
+  cantUse:
+    serializedVersion: 2
+    m_Bits: 0
+  posFrom: {x: 0, y: 0, z: 0}
+  dirTo: {x: 0, y: 0, z: 0}
 --- !u!23 &4799709977476288261
 MeshRenderer:
   m_ObjectHideFlags: 0

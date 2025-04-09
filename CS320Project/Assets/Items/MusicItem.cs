@@ -15,11 +15,11 @@ public class MusicItem : ItemClass //inherits from ItemClass
     void Update()
     {   
         //print("workjing");
-        if (held && Input.GetKeyDown("f")) {
+        if (inWorldSpace && Input.GetKeyDown("f")) {
             print("starting sanity gain");
             sanityState.startSanityGain();
         }
-        if(!held) {
+        if(!inWorldSpace) {
             print("starting sanity loss");
             sanityState.startSanityLoss();
         }

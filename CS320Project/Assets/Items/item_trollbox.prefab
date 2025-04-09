@@ -48,8 +48,10 @@ MonoBehaviour:
   basePosition: {x: 0, y: 0, z: 0}
   baseAngle: {x: 0, y: 0, z: 0}
   guiSprite: {fileID: 21300000, guid: 2d2bc8b40b0328f45a1e8b56df581143, type: 3}
-  held: 1
+  inWorldSpace: 1
+  held: 0
   itemName: Trollbox
+  type: 4
 --- !u!1001 &7052963993476710498
 PrefabInstance:
   m_ObjectHideFlags: 0

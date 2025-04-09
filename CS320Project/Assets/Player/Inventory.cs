@@ -11,11 +11,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < inventorySize; i++)
         {
-            if (inventorySlot[i] != null)
-            {
-                ItemClass item = inventorySlot[i].GetComponent<ItemClass>();
-                item.held = true;
-            }
+            inventorySlot[i] = null;
         }
     }
 
@@ -36,7 +32,7 @@ public class Inventory : MonoBehaviour
         {
             if (inventorySlot[i] == null)
             {
-                inventorySlot[i] = Instantiate(itemToAdd);
+                inventorySlot[i] = itemToAdd;
                 return true;
             }
         }
@@ -51,7 +47,7 @@ public class Inventory : MonoBehaviour
         {
             inventorySlot[position] = itemToAdd;
             ItemClass item = inventorySlot[position].GetComponent<ItemClass>();
-            item.held = true;
+            item.inWorldSpace = false;
             return;
         }
     }
@@ -73,4 +69,5 @@ public class Inventory : MonoBehaviour
     {
         inventorySlot[slotNumber] = null;
     }
+
 }
