@@ -57,7 +57,7 @@ public class NPCClass : MonoBehaviour
         else                            //Destroy entity if it gets to this state
         {
             isAlive = false;
-            Destroy(this,0.0f);
+            DestroyImmediate(this);
         }
         //Instantiate(nodelist,transform);
         nodelist = Instantiate(nodelist);
@@ -220,7 +220,8 @@ public class NPCClass : MonoBehaviour
             }
         }
         
-        Destroy(this,0.0f); //Only gets here if no HP - kill NPC (automatically ends coroutines)
+        nodelist.NPCDeath();    //Kill nodes and nodelist first
+        DestroyImmediate(this); //Only gets here if no HP - kill NPC (automatically ends coroutines)
     }
 
     public void TestUpdate()
@@ -287,7 +288,7 @@ public class NPCClass : MonoBehaviour
         else                            //Destroy entity if it gets to this state
         {
             isAlive = false;
-            Destroy(this,0.0f);
+            DestroyImmediate(this);
         }
     }
 }
