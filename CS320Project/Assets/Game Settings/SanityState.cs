@@ -116,7 +116,7 @@ public class SanityState : MonoBehaviour
             startSanityLoss();
             //print("workjing");
         }
-        else if (music_player.held && isFPressed) {
+        else if (music_player.inWorldSpace && isFPressed) {
                 FindAnyObjectByType<AudioManager>().Play("Creep");
                 print("starting sanity gain");
                 startSanityGain();

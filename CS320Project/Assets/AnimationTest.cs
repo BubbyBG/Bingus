@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class AnimationTest : MonoBehaviour
 {
-    private Animation animRecoil;
-    public AnimationClip clip;
+    //private Animation animRecoil;
+    public Animator animator;
+    //public AnimationClip fireAnimation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        animRecoil = transform.GetChild(0).GetComponent<Animation>();
-        animRecoil.clip = clip;
+        animator = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -17,7 +17,10 @@ public class AnimationTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            animRecoil.Play();
+            print(animator.enabled);
+            print(animator.isActiveAndEnabled);
+
+            animator.Play("Fire", 0 , 0.25f);
         }
     }
 }

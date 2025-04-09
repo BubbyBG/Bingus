@@ -22,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         activeSlot = 0;
         playerArms = _playerArms.GetComponent<PlayerArms>();
         inventory = GetComponent<Inventory>();
@@ -33,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         posFrom = cam.transform.position + Vector3.down * 0.1f; //lowered so its easily visible
-        dirTo = cam.transform.forward;
+        dirTo = cam.transform.forward * 10f;
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -71,6 +72,20 @@ public class PlayerInput : MonoBehaviour
         {
             OnNumberKey(4);
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            //if something is being held
+            if (playerArms.GetHeldItem() != null)
+            {
+                //if a weapon is being held
+                WeaponClass heldWeapon = playerArms.GetHeldItem().GetComponent<WeaponClass>();
+                if (heldWeapon != null)
+                {
+                    heldWeapon.UseWeaponPrimary();
+                }
+            }
+        }
     }
 
     public void OnNumberKey(int num)
@@ -107,21 +122,30 @@ public class PlayerInput : MonoBehaviour
 
     public void OnUseKey()
     {
-        Debug.DrawRay(posFrom, dirTo, Color.white, 10f);
+        Debug.DrawRay(posFrom, dirTo, Color.white, 5);
         RaycastHit hit;
-        if (Physics.Raycast(posFrom, dirTo, out hit, 5f))
+        if (Physics.Raycast(posFrom, dirTo, out hit, 5))
         {
             GameObject hitObject = hit.transform.gameObject;
-            print(hit.transform.gameObject.ToString());// ToString());
+            //print(hit.transform.gameObject.ToString());// ToString());
             ItemClass hitThing = hitObject.GetComponent<ItemClass>();
             if (hitThing != null)
             {
-                if (inventory.AddItem(hit.transform.gameObject)) //if inventory has an empty slot
+                print(hitThing.name);
+                //hitThing.OnUseKey(); //destroy physics components on item
+                if (hitObject.GetComponent<Rigidbody>() != null)
                 {
-                    hitThing.OnUseKey(); //destroy physics components on item
-                    Destroy(hitThing.gameObject);
-                    masterHUD.RefreshAll();
+                    Destroy(hitObject.GetComponent<Rigidbody>());
                 }
+                if (hitObject.GetComponent<BoxCollider>() != null)
+                {
+                    Destroy(hitObject.GetComponent<BoxCollider>());
+                }
+                hitObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                hitThing.inWorldSpace = true;
+                inventory.AddItem(hitThing.gameObject);
+                playerArms.SwitchSlot();
+                masterHUD.RefreshAll();
             }
 
             IInteractable interactable = hitObject.GetComponent<IInteractable>();

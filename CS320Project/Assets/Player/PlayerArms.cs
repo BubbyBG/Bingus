@@ -29,7 +29,7 @@ public class PlayerArms : MonoBehaviour
     {
         inventory = transform.parent.parent.GetComponent<Inventory>();
         input = transform.parent.parent.GetComponent<PlayerInput>();
-        heldItemType = inventory.GetItem(input.activeSlot);
+        heldItemType = null;
         swayVector = new Vector3(0f, 0f, 0f);
         updateArms = true;
         EquipItem();
@@ -51,7 +51,9 @@ public class PlayerArms : MonoBehaviour
         {
             Destroy(heldItem);
             heldItem = Instantiate(heldItemType, transform, false);
+            //heldItem.
             ItemClass heldItemClass = heldItem.GetComponent<ItemClass>();
+            heldItemClass.StartOnEquip();
             heldItem.transform.localPosition = heldItemClass.basePosition;
             heldItem.transform.localEulerAngles = heldItemClass.baseAngle;
         }
@@ -73,6 +75,6 @@ public class PlayerArms : MonoBehaviour
 
     public GameObject GetHeldItem()
     {
-        return heldItemType;
+        return heldItem;
     }
 }
