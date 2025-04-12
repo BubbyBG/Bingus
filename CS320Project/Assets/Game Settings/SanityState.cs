@@ -16,23 +16,34 @@ public class SanityState : MonoBehaviour
     public bool losingSanity = false; //true if losing sanity, false if not losing
     private bool isFPressed = false;
 
+    
+
     public Volume post_process_volume;
     private Vignette vignette;
     private FilmGrain grain;
     public PlayerArms player_arms;
-    public MusicItem music_player;
-    public GameObject music_item;
 
+    public GameObject music_object;
+    public ItemClass music_player;
+   // public GameObject music_object;
+
+    private float pp_rate = 0.001f;
+
+    private GameObject currItem;
     void Start()
     {
+
+        post_process_volume = GetComponentInChildren<Volume>();
+       
         post_process_volume.profile.TryGet(out vignette);
         post_process_volume.profile.TryGet(out grain);
-
+        
         rate = 1f;
         sanitySlider.value = sanityValues.maxSanity;
         sanityValues.currentSanity = sanitySlider.value;
         //music_player = FindAnyObjectByType<MusicItem>();
         player_arms = FindAnyObjectByType<PlayerArms>();
+        
         startSanityLoss();
     }
 
@@ -45,10 +56,21 @@ public class SanityState : MonoBehaviour
             startSanityLoss();
         }
         */
-        isFPressed = Input.GetKeyDown("f");
-        playMusic(isFPressed);
+        currItem = player_arms.GetHeldItem();
+        music_player = currItem.GetComponent<ItemClass>();
+        
+        stopMusic();
         if( sanityValues.currentSanity == 0.0f) {
-
+            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_rate, 1);
+            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_rate, 1);
+            grain.intensity.value =  Mathf.Min(grain.intensity.value + pp_rate, 1);
+    
+        }
+        else if( sanityValues.currentSanity == sanityValues.maxSanity) {
+            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_rate, 0);
+            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_rate, 0);
+            grain.intensity.value =  Mathf.Max(grain.intensity.value - pp_rate, 0);
+           
         }
         
     }
@@ -85,10 +107,7 @@ public class SanityState : MonoBehaviour
            
             yield return null;
         }
-        vignette.intensity.value = 1f;
-        vignette.smoothness.value = 0.7f;
-        grain.intensity.value = 1f;
-        grain.response.value = 1f;
+        
 
 
         
@@ -100,27 +119,23 @@ public class SanityState : MonoBehaviour
             sanitySlider.value = sanityValues.currentSanity * rate;
             yield return null;
         }
-        vignette.intensity.value = 0f;
-        vignette.smoothness.value = 0f;
-        grain.intensity.value = 0f;
-        grain.response.value = 0f;
+       
 
     }
    
 
-    public void playMusic(bool isFPressed) {
+    
+    public void stopMusic() {
 
-        if(player_arms.GetHeldItem() != music_item) {
-            FindAnyObjectByType<AudioManager>().Stop("Creep");
-            print("starting sanity loss");
+        
+        if(music_player.type!= ItemClass.itemType.musicBox || !(music_player.inWorldSpace)) {
+            
+            FindAnyObjectByType<AudioManager>().Stop("hooppler");
+            
             startSanityLoss();
-            //print("workjing");
-        }
-        else if (music_player.inWorldSpace && isFPressed) {
-                FindAnyObjectByType<AudioManager>().Play("Creep");
-                print("starting sanity gain");
-                startSanityGain();
+            
         }
     }
+    
   
 }

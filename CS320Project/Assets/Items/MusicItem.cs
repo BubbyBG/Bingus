@@ -1,27 +1,54 @@
 using UnityEngine;
 
-public class MusicItem : ItemClass //inherits from ItemClass
+public class MusicItem : MonoBehaviour 
 {
 
+    private GameObject player;
     private SanityState sanityState;
-    
+    private float cooldownTimer;
+    private float musicTime = 1000f;
     void Start()
     {
-       
-        sanityState = FindAnyObjectByType<SanityState>(); //there will only be one sanity state so this shouldn't find anything else
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        sanityState = player.GetComponent<SanityState>(); //there will only be one sanity state so this shouldn't find anything else
+        cooldownTimer = 0f;
     }
 
     void Update()
     {   
-        //print("workjing");
-        if (inWorldSpace && Input.GetKeyDown("f")) {
-            print("starting sanity gain");
-            sanityState.startSanityGain();
+
+        
+        
+        if(cooldownTimer <= 0) {
+            if (Input.GetKeyDown("f")) {
+                
+                
+                cooldownTimer = musicTime;
+                playMusic();
+                sanityState.startSanityGain();
+            }
+            else
+            {
+                stopMusic();
+                
+                sanityState.startSanityLoss(); //if not pressing f and music off start sanity loss again
+            }
         }
-        if(!inWorldSpace) {
-            print("starting sanity loss");
-            sanityState.startSanityLoss();
+        else {
+            cooldownTimer -= 120f * Time.deltaTime;
         }
+        
     }
+
+    
+    public void playMusic() 
+    {
+        FindAnyObjectByType<AudioManager>().Play("hooppler");
+    }
+
+    public void stopMusic() 
+    {   
+        FindAnyObjectByType<AudioManager>().Stop("hooppler");
+    }
+    
 }

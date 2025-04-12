@@ -42,6 +42,7 @@ public class ItemClass : MonoBehaviour
 
     public void StartOnEquip() //
     {
+        
         held = true;
         transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
         inWorldSpace = true;
@@ -50,11 +51,12 @@ public class ItemClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void OnEjection(Vector3 ejectionVector)
     {
+        
         mcollider = gameObject.AddComponent<BoxCollider>();
         mcollider.size = new Vector3(0.5f, 0.5f, 0.5f);
         mcollider.excludeLayers = LayerMask.GetMask("Entities");
@@ -62,6 +64,7 @@ public class ItemClass : MonoBehaviour
         //rbody.AddForce(ejectionVector, ForceMode.VelocityChange);
         transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
         inWorldSpace = true;
+        
     }
 
     public GameObject OnUseKey() //when the player looks at it and presses the use button

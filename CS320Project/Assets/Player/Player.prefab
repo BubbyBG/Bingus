@@ -292,8 +292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlot:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6457371792441684228, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
+  - {fileID: 6457371792441684228, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5367783936900186388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6722085885383957590, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6722085885383957590, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6722085885383957590, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_Intensity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -6722085885383957590, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 4673
+      objectReference: {fileID: 0}
+    - target: {fileID: -6722085885383957590, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0724463
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0724462
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0724461
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.6956658
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0018637179
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0019245183
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7183606
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180.307
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: -447275898630060098, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 88.161
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      propertyPath: m_Name
+      value: flashlight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8508264180745878768}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6579297846828949153}
+  m_SourcePrefab: {fileID: 100100000, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+--- !u!1 &5097893207937055813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 29342950553b23e42a44b66756972fa6, type: 3}
+  m_PrefabInstance: {fileID: 5367783936900186388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8508264180745878768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097893207937055813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac1817cda54fee458129c0ba40806a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePosition: {x: 0, y: 0, z: 0}
+  baseAngle: {x: 0, y: 0, z: 0}
+  guiSprite: {fileID: 21300000, guid: a8ea63ec12ba82348af9dd5fb467cc1b, type: 3}
+  inWorldSpace: 0
+  held: 0
+  itemName: flashlight
+  placed: 0
+  type: 2
+--- !u!114 &-6579297846828949153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097893207937055813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f13cf644dced4a4899cef4a62897680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

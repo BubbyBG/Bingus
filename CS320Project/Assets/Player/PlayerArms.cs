@@ -33,6 +33,7 @@ public class PlayerArms : MonoBehaviour
         swayVector = new Vector3(0f, 0f, 0f);
         updateArms = true;
         EquipItem();
+        
     }
 
     void Update()

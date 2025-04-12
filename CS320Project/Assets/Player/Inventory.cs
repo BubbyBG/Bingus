@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < inventorySize; i++)
         {
-            inventorySlot[i] = null;
+            //inventorySlot[i] = null;
         }
     }
 
