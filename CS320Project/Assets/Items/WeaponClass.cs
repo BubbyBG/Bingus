@@ -19,6 +19,7 @@ public class WeaponClass : MonoBehaviour
     public float weaponCooldown;
     //public Sound soundFire;
     //public Sound soundEquip;
+
     
     public enum weaponType
     {
@@ -37,6 +38,7 @@ public class WeaponClass : MonoBehaviour
         inventory = player.GetComponent<Inventory>();
         input = player.GetComponent<PlayerInput>();
         _animation = GetComponent<Animator>();
+       
         //_animation = transform.GetChild(0).GetComponent<Animation>();
         //_animation.clip = anim_recoil;
         cooldownTimer = 0;
@@ -73,6 +75,9 @@ public class WeaponClass : MonoBehaviour
             projectile.GetComponent<ProjectileClass>().Shoot(input.posFrom, input.dirTo);
             //_animation.Play("gun_model|Recoil");
             _animation.Play("Fire");
+
+            FindAnyObjectByType<AudioManager>().Play("pistol");
+
             GameObject muzzleFlash = Instantiate(fireEffect, muzzle, transform.rotation);
             //audioS.Play(soundFire);
             cooldownTimer = weaponCooldown;
