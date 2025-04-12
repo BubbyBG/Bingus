@@ -17,7 +17,6 @@ public class StatusBar : MonoBehaviour
 
         slider.maxValue = max; // overall range represented in the status HUD (black bar)
         slider.minValue = 0;
-
         thresholdSlider.maxValue = max;
         thresholdSlider.minValue = 0;
     }

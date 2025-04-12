@@ -8,8 +8,7 @@ using UnityEngine.Assertions;
 public class PlayerInfo : MonoBehaviour
 {
     public int maxRange = 100;
-    public GameObject deathScreen;
-    public CanvasGroup deathCanvasGroup;
+    public DeathScreen deathScreen;
 
     public int healthThreshold = 50; // base starting health value
     public int currentHealth;
@@ -19,8 +18,6 @@ public class PlayerInfo : MonoBehaviour
     private string healthColor2 = "#FFDE0F";
     private string healthColor3 = "#E47413";
     private string healthColor4 = "#B7120A"; // low 
-
-
 
     public int staminaThreshold = 50; // base starting stamina value. threshold which stamina refills to.
     public int currentStamina; // decreases with sprinting. refills with walking.
@@ -40,10 +37,6 @@ public class PlayerInfo : MonoBehaviour
         // healthBar = new GameObject("HealthBar").AddComponent<StatusBar>(); //for testing
         // staminaBar = new GameObject("StaminaBar").AddComponent<StatusBar>(); //for testing
         // damageBar = new GameObject("DamageBar").AddComponent<StatusBar>(); //for testing
-        // deathScreen = new GameObject("DeathScreen"); //for testing
-        // deathCanvasGroup = deathScreen.GetComponent<CanvasGroup>();
-
-        deathScreen.SetActive(false);
 
         currentHealth = healthThreshold;
         healthBar.SetValueRange(maxRange);
@@ -85,7 +78,7 @@ public class PlayerInfo : MonoBehaviour
         {
             ChangeDamageValue(90);
         }
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U)) //sprint test
         {
             StartStopSprint(-1, 0.1f);
         }
@@ -103,8 +96,7 @@ public class PlayerInfo : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0; // player death game status
-            // Assert.IsFalse(currentHealth == 0);
-            PlayerDeath();
+            deathScreen.activate();
         }
         if (currentHealth > healthThreshold)
         {
@@ -140,32 +132,6 @@ public class PlayerInfo : MonoBehaviour
             }
             ChangeHealth(0);
         }
-        else
-        {
-            Debug.Log("Don't decrease healthThreshold");
-        }
-    }
-
-    public void PlayerDeath()
-    {
-        deathScreen.SetActive(true);
-        StartCoroutine(displayScreenLoadScene());
-    }
-
-    private IEnumerator displayScreenLoadScene()
-    {
-        float timeElapsed = 0f;
-        float fadeDuration = 2f;
-        while (timeElapsed < fadeDuration)
-        {
-            deathCanvasGroup.alpha = timeElapsed / fadeDuration;
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        deathCanvasGroup.alpha = 1f;
-
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("StartMenuScene");
     }
 
     public void ChangeStamina(int stamina) // alters current stamina and passes to statusbar. called inside sprinting function loop. called during melee attacks
@@ -192,10 +158,6 @@ public class PlayerInfo : MonoBehaviour
                 staminaThreshold = maxRange;
             }
             staminaBar.SetStatus(currentStamina, staminaThreshold, staminaColor1);
-        }
-        else
-        {
-            Debug.Log("Don't decrease staminaThreshold");
         }
     }
 
