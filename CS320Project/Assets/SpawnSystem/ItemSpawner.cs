@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 {
-    public List<Transform> spawnPoints; // stores positions of spawnpoints
-    public List<Transform> selectedPoints;
-    public int itemQuantity;
+    private List<Transform> spawnPoints; // stores positions of spawnpoints
+    private List<Transform> selectedPoints;
+    private int itemQuantity;
 
     public void SelectPoints()
     {
@@ -20,7 +20,7 @@ public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 
     public void SpawnItems(Dictionary<GameObject, int> items) // spawn multiple item types over spawn points
     {
-        spawnPoints.Clear();
+        // spawnPoints.Clear();
         spawnPoints.AddRange(GetComponentsInChildren<Transform>());
 
         foreach (var item in items)
