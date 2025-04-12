@@ -148,11 +148,14 @@ public class PlayerInput : MonoBehaviour
                 masterHUD.RefreshAll();
             }
 
-            IInteractable interactable = hitObject.GetComponent<IInteractable>();
+            IInteractable interactable = hitObject.GetComponent<IInteractable>() 
+                          ?? hitObject.GetComponentInParent<IInteractable>();
+
             if (interactable != null)
             {
                 interactable.Interact();
             }
         }
     }
+
 }
