@@ -1,13 +1,9 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System.Collections;
-using UnityEngine.Assertions;
+// using UnityEngine.Assertions;
 
 public class LowHealthEffect : MonoBehaviour
 {
-    CanvasGroup lowHealthCanvasGroup;
+    public CanvasGroup lowHealthCanvasGroup;
     public PlayerInfo playerInfo;
 
     void Start()
@@ -22,7 +18,8 @@ public class LowHealthEffect : MonoBehaviour
         {
             lowHealthCanvasGroup.alpha = 1f;
         }
-        else{
+        else
+        {
             lowHealthCanvasGroup.alpha = 0f;
         }
     }

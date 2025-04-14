@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 
-// manages all spawn groupings in map
-public class SpawnSystem : MonoBehaviour
+public class SpawnSystem : MonoBehaviour// manages all tokenItem spawn groupings in map
 {
     public GameObject firstAidKit; // spawnable items
     // public GameObject book;
@@ -13,7 +11,7 @@ public class SpawnSystem : MonoBehaviour
     {
         Dictionary<GameObject, int> mapSection1Items = new Dictionary<GameObject, int>
         {
-            { firstAidKit, 1}
+            { firstAidKit, 2}
             // ,{ book, 1}
         };
         mapSection1.SpawnItems(mapSection1Items);

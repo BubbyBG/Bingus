@@ -1,38 +1,32 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class PlayerSkillSystem : MonoBehaviour
 {
     public Text pointSystem;
 
     private string skillTextColor1 = "#990000"; // no points
-    private string skillTextColor2 = "#60F0D9"; // points
+    private string skillTextColor2 = "#3EA5F1"; // points
     public Color skillColor;
 
-    private PlayerInfo playerInfo;
+    public PlayerInfo playerInfo;
     public int SkillPoints;
 
     void Start()
     {
         playerInfo = GetComponent<PlayerInfo>();
         SkillPoints = 5;
-        pointSystem.text = "  " + SkillPoints;
+        pointSystem.text = SkillPoints.ToString();
         changeSkillColor(skillTextColor2);
     }
 
     void Update()
     {
-        IncreaseSkillPoints();
-        pointSystem.text = "  " + SkillPoints;
+        pointSystem.text = SkillPoints.ToString();
+        changeSkillColor(skillTextColor1);
         if (SkillPoints > 0)
         {
             changeSkillColor(skillTextColor2);
-        }
-        else
-        {
-            changeSkillColor(skillTextColor1);
         }
         if (SkillPoints > 0)
         {
@@ -60,8 +54,8 @@ public class PlayerSkillSystem : MonoBehaviour
         pointSystem.color = skillColor;
     }
 
-    public void IncreaseSkillPoints()
+    public void IncreaseSkillPoints(int points)
     {
-        SkillPoints += 1;
+        SkillPoints += points;
     }
 }
