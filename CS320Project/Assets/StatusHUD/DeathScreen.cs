@@ -1,20 +1,20 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Assertions;
+// using UnityEngine.Assertions;
 
 public class DeathScreen : MonoBehaviour
 {
-    CanvasGroup deathCanvasGroup;
+    public CanvasGroup deathCanvasGroup;
 
-    void Start(){
+    void Start()
+    {
         deathCanvasGroup = GetComponent<CanvasGroup>();
         deathCanvasGroup.alpha = 0f;
     }
 
-    public void activate(){
+    public void activate()
+    {
         StartCoroutine(displayScreenLoadScene());
     }
 

@@ -1,9 +1,6 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Assertions;
+// using UnityEngine.Assertions;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -17,7 +14,7 @@ public class PlayerInfo : MonoBehaviour
     private string healthColor1 = "#0E940F"; // full
     private string healthColor2 = "#FFDE0F";
     private string healthColor3 = "#E47413";
-    private string healthColor4 = "#B7120A"; // low 
+    private string healthColor4 = "#B7120A"; // low
 
     public int staminaThreshold = 50; // base starting stamina value. threshold which stamina refills to.
     public int currentStamina; // decreases with sprinting. refills with walking.
@@ -66,19 +63,15 @@ public class PlayerInfo : MonoBehaviour
         {
             ChangeStamina(-10);
         }
-        if (Input.GetKeyDown(KeyCode.R)) //regain stamina test
-        {
-            ChangeStamina(10);
-        }
-        if (Input.GetKeyDown(KeyCode.T)) //damge change test
+        if (Input.GetKeyDown(KeyCode.R)) //damge change test
         {
             ChangeDamageValue(20);
         }
-        if (Input.GetKeyDown(KeyCode.Y)) //damage change test
+        if (Input.GetKeyDown(KeyCode.T)) //damage change test
         {
             ChangeDamageValue(90);
         }
-        if (Input.GetKeyDown(KeyCode.U)) //sprint test
+        if (Input.GetKeyDown(KeyCode.Y)) //sprint test
         {
             StartStopSprint(-1, 0.1f);
         }
@@ -212,7 +205,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (currentStamina == 0)
         { // penalize player if stamina gets too low
-            yield return new WaitForSeconds(3); // calling sprint while penalty wait is occurring will 
+            yield return new WaitForSeconds(3); // calling sprint while penalty wait is occurring will cause error
         }
         while ((currentStamina < staminaThreshold))
         {

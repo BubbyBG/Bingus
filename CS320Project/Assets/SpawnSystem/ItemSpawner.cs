@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 
 public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 {
-    private List<Transform> spawnPoints; // stores positions of spawnpoints
-    private List<Transform> selectedPoints;
+    public List<Transform> spawnPoints; // stores positions of spawnpoints
+    public List<Transform> selectedPoints;
     private int itemQuantity;
 
     public void SelectPoints()
     {
-        while ((selectedPoints.Count < itemQuantity) && (spawnPoints.Count > 0))
+        while ((selectedPoints.Count <= itemQuantity) && (spawnPoints.Count > 0))
         {
             int randIndex = Random.Range(0, spawnPoints.Count);
             selectedPoints.Add(spawnPoints[randIndex]);
@@ -20,7 +19,6 @@ public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 
     public void SpawnItems(Dictionary<GameObject, int> items) // spawn multiple item types over spawn points
     {
-        // spawnPoints.Clear();
         spawnPoints.AddRange(GetComponentsInChildren<Transform>());
 
         foreach (var item in items)
@@ -30,16 +28,10 @@ public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 
             for (int i = 0; i < itemQuantity; i++)
             {
-                if (i >= selectedPoints.Count)
-                {
-                    Debug.Log("spawn points error");
-                    break;
-                }
                 Transform itemSpawnPoint = selectedPoints[i];
                 Instantiate(item.Key, itemSpawnPoint.position, itemSpawnPoint.rotation);
             }
             selectedPoints.Clear();
         }
-
     }
 }
