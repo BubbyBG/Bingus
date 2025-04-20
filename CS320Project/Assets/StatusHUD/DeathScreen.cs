@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 // using UnityEngine.Assertions;
 
 public class DeathScreen : MonoBehaviour
@@ -31,6 +32,8 @@ public class DeathScreen : MonoBehaviour
         deathCanvasGroup.alpha = 1f;
 
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("StartMenuScene");
+
+        SaveManager.isLoadGame = true;
+        SceneManager.LoadScene("Progression Main_Outdoor Copy"); // error
     }
 }

@@ -4,28 +4,33 @@ using System.Collections;
 
 public class PlayerInfo : MonoBehaviour
 {
+    // OVERALL
     public int maxRange = 100;
     public DeathScreen deathScreen;
+    public bool playerDied = false;
 
-    public int healthThreshold = 50; // base starting health value
-    public int currentHealth;
+    // HEALTH INFO
     public StatusBar healthBar;
-    private string currentHealthColor;
+    public int healthThreshold = 50;
+    public int currentHealth;
+    public string currentHealthColor;
     private string healthColor1 = "#0E940F"; // full
     private string healthColor2 = "#FFDE0F";
     private string healthColor3 = "#E47413";
     private string healthColor4 = "#B7120A"; // low
 
-    public int staminaThreshold = 50; // base starting stamina value. threshold which stamina refills to.
-    public int currentStamina; // decreases with sprinting. refills with walking.
+
+    // STAMINA INFO
     public StatusBar staminaBar;
+    public int staminaThreshold = 50;
+    public int currentStamina; // decreases with sprinting. refills with walking.
     private string staminaColor1 = "#CEC400";
 
+    // DAMAGE INFO
     public int damageValue = 5;
-    public int damageBonus = 0; // used for skill points
+    public int damageBonus = 0;
     public StatusBar damageBar;
-    private string damageColor1 = "#C332CD";
-
+    private string damageColor1 = "#C231CD";
     public Coroutine SprintRoutine;
     public Coroutine StaminaRefillRoutine;
 
@@ -34,47 +39,27 @@ public class PlayerInfo : MonoBehaviour
         // healthBar = new GameObject("HealthBar").AddComponent<StatusBar>(); //for testing
         // staminaBar = new GameObject("StaminaBar").AddComponent<StatusBar>(); //for testing
         // damageBar = new GameObject("DamageBar").AddComponent<StatusBar>(); //for testing
-
-        currentHealth = healthThreshold;
+        if (!SaveManager.isLoadGame) // new game
+        {
+            currentHealth = healthThreshold;
+            currentStamina = staminaThreshold;
+            currentHealthColor = healthColor1;
+        }
         healthBar.SetValueRange(maxRange);
-        healthBar.SetStatus(currentHealth, healthThreshold, healthColor1);
+        healthBar.SetStatus(currentHealth, healthThreshold, currentHealthColor);
 
-        currentStamina = staminaThreshold;
-        healthBar.SetValueRange(maxRange);
+        staminaBar.SetValueRange(maxRange);
         staminaBar.SetStatus(currentStamina, staminaThreshold, staminaColor1);
         SprintRoutine = null;
         StaminaRefillRoutine = null;
 
-        healthBar.SetValueRange(maxRange);
+        damageBar.SetValueRange(maxRange);
         damageBar.SetStatus(damageValue, damageValue, damageColor1);
     }
 
     void Update()  // status change tests
     {
-        if (Input.GetKeyDown(KeyCode.Q)) //take damage test
-        {
-            ChangeHealth(-10);
-        }
-        if (Input.GetKeyDown(KeyCode.W)) //heal test
-        {
-            ChangeHealth(10);
-        }
-        if (Input.GetKeyDown(KeyCode.E)) //lose stamina test
-        {
-            ChangeStamina(-10);
-        }
-        if (Input.GetKeyDown(KeyCode.R)) //damge change test
-        {
-            ChangeDamageValue(20);
-        }
-        if (Input.GetKeyDown(KeyCode.T)) //damage change test
-        {
-            ChangeDamageValue(90);
-        }
-        if (Input.GetKeyDown(KeyCode.Y)) //sprint test
-        {
-            StartStopSprint(-1, 0.1f);
-        }
+        CheckTestKeys();
         if ((SprintRoutine == null) && (StaminaRefillRoutine == null) && (currentStamina < staminaThreshold))
         {
             StartStaminaRefill(1, 0.2f);
@@ -88,22 +73,23 @@ public class PlayerInfo : MonoBehaviour
         currentHealth += health;
         if (currentHealth <= 0)
         {
-            currentHealth = 0; // player death game status
+            currentHealth = 0;
+            playerDied = true; // don't save if player died
             deathScreen.activate();
         }
         if (currentHealth > healthThreshold)
         {
             currentHealth = healthThreshold;
         }
-        if (currentHealth > healthThreshold * 0.75)
+        if (currentHealth > healthThreshold * .75)
         {
             currentHealthColor = healthColor1;
         }
-        else if (currentHealth > healthThreshold * 0.5)
+        else if (currentHealth > healthThreshold * .50)
         {
             currentHealthColor = healthColor2;
         }
-        else if (currentHealth > healthThreshold * 0.25)
+        else if (currentHealth > healthThreshold * .25)
         {
             currentHealthColor = healthColor3;
         }
@@ -126,6 +112,7 @@ public class PlayerInfo : MonoBehaviour
             ChangeHealth(0);
         }
     }
+
 
     public void ChangeStamina(int stamina) // alters current stamina and passes to statusbar. called inside sprinting function loop. called during melee attacks
     {
@@ -205,7 +192,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (currentStamina == 0)
         { // penalize player if stamina gets too low
-            yield return new WaitForSeconds(3); // calling sprint while penalty wait is occurring will cause error
+            yield return new WaitForSeconds(3);
         }
         while ((currentStamina < staminaThreshold))
         {
@@ -234,5 +221,38 @@ public class PlayerInfo : MonoBehaviour
         damageValue -= damageBonus; //revert to weapon base damage value
         damageBonus += damageBonusIncrease;
         ChangeDamageValue(damageValue); //update base weapon damage with new bonus
+    }
+
+
+    public void CheckTestKeys()
+    {
+        bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        if (shiftHeld)
+        {
+            if (Input.GetKeyDown(KeyCode.Q)) //take damage test
+            {
+                ChangeHealth(-10);
+            }
+            if (Input.GetKeyDown(KeyCode.W)) //heal test
+            {
+                ChangeHealth(10);
+            }
+            if (Input.GetKeyDown(KeyCode.E)) //lose stamina test
+            {
+                ChangeStamina(-10);
+            }
+            if (Input.GetKeyDown(KeyCode.R)) //damge change test
+            {
+                ChangeDamageValue(20);
+            }
+            if (Input.GetKeyDown(KeyCode.T)) //damage change test
+            {
+                ChangeDamageValue(90);
+            }
+            if (Input.GetKeyDown(KeyCode.Y)) //sprint test
+            {
+                StartStopSprint(-1, 0.1f);
+            }
+        }
     }
 }

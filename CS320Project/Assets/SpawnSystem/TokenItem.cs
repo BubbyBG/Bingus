@@ -11,10 +11,10 @@ public class TokenItem : MonoBehaviour
     private void OnTriggerEnter(Collider player)
     {
         PlayerSkillSystem skillSystem = player.GetComponent<PlayerSkillSystem>();
-        if (skillSystem == null)
-        {
-            Debug.Log("collider doesn't have PlayerSkillsystem");
-        }
+        // if (skillSystem == null)
+        // {
+        //     Debug.Log("collider doesn't have PlayerSkillsystem");
+        // }
         PlayerInfo playerInfo = player.GetComponent<PlayerInfo>();
         string itemName = gameObject.name;
 
@@ -22,10 +22,10 @@ public class TokenItem : MonoBehaviour
         {
             playerInfo.ChangeHealth(10);
         }
-        // else if (itemName.Contains("Book"))
-        // {
-        //     skillSystem.IncreaseSkillPoints();
-        // }
+        else if (itemName.Contains("Book"))
+        {
+            skillSystem.IncreaseSkillPoints(1);
+        }
         Destroy(gameObject);
     }
 }
