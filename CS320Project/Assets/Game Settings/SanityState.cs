@@ -27,8 +27,8 @@ public class SanityState : MonoBehaviour
     public ItemClass music_player;
    // public GameObject music_object;
 
-    private float pp_rate = 0.001f;
-
+    private float pp_loss_rate = 0.00001f;
+    private float pp_gain_rate = 0.01f;
     private GameObject currItem;
     void Start()
     {
@@ -61,15 +61,15 @@ public class SanityState : MonoBehaviour
         
         stopMusic();
         if( sanityValues.currentSanity == 0.0f) {
-            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_rate, 1);
-            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_rate, 1);
-            grain.intensity.value =  Mathf.Min(grain.intensity.value + pp_rate, 1);
+            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_loss_rate, 1);
+            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_loss_rate, 1);
+            grain.intensity.value =  Mathf.Min(grain.intensity.value + pp_loss_rate, 1);
     
         }
         else if( sanityValues.currentSanity == sanityValues.maxSanity) {
-            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_rate, 0);
-            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_rate, 0);
-            grain.intensity.value =  Mathf.Max(grain.intensity.value - pp_rate, 0);
+            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_gain_rate, 0);
+            vignette.intensity.value = Mathf.Max(vignette.intensity.value - pp_gain_rate, 0);
+            grain.intensity.value =  Mathf.Max(grain.intensity.value - pp_gain_rate, 0);
            
         }
         
@@ -102,9 +102,11 @@ public class SanityState : MonoBehaviour
     IEnumerator loseSanity(float rate) {
        
         while(sanityValues.currentSanity > 0) {
-            sanityValues.changeSanity(-0.01f);
+            sanityValues.changeSanity(-0.001f);
             sanitySlider.value = sanityValues.currentSanity * rate;
-           
+            vignette.intensity.value = Mathf.Min(vignette.intensity.value + pp_loss_rate, 0.7f);
+            vignette.smoothness.value = Mathf.Min(vignette.smoothness.value + pp_loss_rate, 1);
+            grain.intensity.value =  Mathf.Min(grain.intensity.value + pp_loss_rate, 1);
             yield return null;
         }
         

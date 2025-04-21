@@ -145,29 +145,6 @@ MonoBehaviour:
   player_arms: {fileID: 0}
   music_object: {fileID: 872148461491456765, guid: 122dbe5ab116aa148a9c5d35a815d5fd, type: 3}
   music_player: {fileID: 0}
---- !u!114 &140362605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140362596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e63c720bf50fc745962fa4bfbe0116c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: hooppler
-    clip: {fileID: 8300000, guid: 268d8ea2ffcd4b54eb12dcd278680d74, type: 3}
-    volume: 0.365
-    pitch: 0.354
-    source: {fileID: -2440141983846776447, guid: 122dbe5ab116aa148a9c5d35a815d5fd, type: 3}
-  - name: pistol
-    clip: {fileID: 8300000, guid: 4783c3f53e3264e4b8aa814ed08fc0c8, type: 3}
-    volume: 0.365
-    pitch: 0.354
-    source: {fileID: -4967335912253930279, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
 --- !u!1 &330585543 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5036638830859449482, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
@@ -679,6 +656,18 @@ PrefabInstance:
       propertyPath: floorType.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2587002982704105723, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050820069812847790, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ffe843b3b9c8d14792d912d39646105, type: 3}
+    - target: {fileID: 4050820069812847790, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 4192302685486564072, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.8
@@ -742,11 +731,15 @@ PrefabInstance:
     - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: 'inventorySlot.Array.data[1]'
       value: 
-      objectReference: {fileID: 6457371792441684228, guid: 1b2b5f34fce70f24588959bf7225f1e8, type: 3}
+      objectReference: {fileID: 5218765035512099235, guid: 6e2c9069c22f3f54080e7eb50386d1f7, type: 3}
     - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: 'inventorySlot.Array.data[2]'
       value: 
       objectReference: {fileID: 872148461491456765, guid: 122dbe5ab116aa148a9c5d35a815d5fd, type: 3}
+    - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: 'inventorySlot.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5097893207937055813, guid: 228aaf95d937c0c468650db8714736f7, type: 3}
     - target: {fileID: 6604322574690043497, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: 'inventorySlot.Array.data[7]'
       value: 
@@ -762,6 +755,22 @@ PrefabInstance:
     - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: updateArms
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: maxSwayWalking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: maxSwayRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: maxSwayStanding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746161473366350214, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
+      propertyPath: swayFrequencyStanding
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8265425237012872879, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -806,9 +815,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5547679155403161905, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 140362604}
-    - targetCorrespondingSourceObject: {fileID: 5547679155403161905, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 140362605}
     - targetCorrespondingSourceObject: {fileID: 5036638830859449482, guid: 9f76910ccb1a5d74faafd947e9bce1b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 330585548}
