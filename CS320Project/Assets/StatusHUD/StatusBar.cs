@@ -8,7 +8,6 @@ public class StatusBar : MonoBehaviour
     public Image sliderFill;
     public Color fillColor;
 
-
     public void SetValueRange(int max)
     {
         // slider = new GameObject("Slider").AddComponent<Slider>(); // for testing

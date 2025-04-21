@@ -3,24 +3,30 @@ using System.Collections.Generic;
 
 public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 {
-    public List<Transform> spawnPoints; // stores positions of spawnpoints
-    public List<Transform> selectedPoints;
+    public BoxCollider spawnZone;
+    public List<Vector3> selectedPoints;
     private int itemQuantity;
+
+    void Start()
+    {
+        spawnZone = GetComponent<BoxCollider>();
+    }
 
     public void SelectPoints()
     {
-        while ((selectedPoints.Count <= itemQuantity) && (spawnPoints.Count > 0))
+        while ((selectedPoints.Count <= itemQuantity))
         {
-            int randIndex = Random.Range(0, spawnPoints.Count);
-            selectedPoints.Add(spawnPoints[randIndex]);
-            spawnPoints.RemoveAt(randIndex);
+            Vector3 randIndex = new Vector3(
+                Random.Range(spawnZone.bounds.min.x, spawnZone.bounds.max.x),
+                Random.Range(spawnZone.bounds.min.y, spawnZone.bounds.max.y),
+                Random.Range(spawnZone.bounds.min.z, spawnZone.bounds.max.z)
+            );
+            selectedPoints.Add(randIndex);
         }
     }
 
     public void SpawnItems(Dictionary<GameObject, int> items) // spawn multiple item types over spawn points
     {
-        spawnPoints.AddRange(GetComponentsInChildren<Transform>());
-
         foreach (var item in items)
         {
             itemQuantity = item.Value;
@@ -28,8 +34,8 @@ public class ItemSpawner : MonoBehaviour //attach ItemSpawner to spawnzoneprefab
 
             for (int i = 0; i < itemQuantity; i++)
             {
-                Transform itemSpawnPoint = selectedPoints[i];
-                Instantiate(item.Key, itemSpawnPoint.position, itemSpawnPoint.rotation);
+                Vector3 itemSpawnPoint = selectedPoints[i];
+                Instantiate(item.Key, itemSpawnPoint, Quaternion.identity);
             }
             selectedPoints.Clear();
         }

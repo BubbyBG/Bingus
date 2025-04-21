@@ -4,46 +4,52 @@ using UnityEngine.UI;
 public class PlayerSkillSystem : MonoBehaviour
 {
     public Text pointSystem;
-
     private string skillTextColor1 = "#990000"; // no points
     private string skillTextColor2 = "#3EA5F1"; // points
     public Color skillColor;
 
     public PlayerInfo playerInfo;
-    public int SkillPoints;
+    public int skillPoints;
 
     void Start()
     {
+        if (!SaveManager.isLoadGame) // new game
+        {
+            skillPoints = 0;
+        }
         playerInfo = GetComponent<PlayerInfo>();
-        SkillPoints = 5;
-        pointSystem.text = SkillPoints.ToString();
+        pointSystem.text = skillPoints.ToString();
         changeSkillColor(skillTextColor2);
     }
 
     void Update()
     {
-        pointSystem.text = SkillPoints.ToString();
+        pointSystem.text = skillPoints.ToString();
         changeSkillColor(skillTextColor1);
-        if (SkillPoints > 0)
+        if (skillPoints > 0)
         {
             changeSkillColor(skillTextColor2);
         }
-        if (SkillPoints > 0)
+        if (skillPoints > 0)
         {
-            if (Input.GetKeyDown(KeyCode.M))
+            bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            if (shiftHeld)
             {
-                SkillPoints -= 1;
-                playerInfo.ChangeHealthThreshold(10);
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                SkillPoints -= 1;
-                playerInfo.ChangeStaminaThreshold(10);
-            }
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                SkillPoints -= 1;
-                playerInfo.ChangeDamageBonus(1);
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    skillPoints -= 1;
+                    playerInfo.ChangeHealthThreshold(10);
+                }
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    skillPoints -= 1;
+                    playerInfo.ChangeStaminaThreshold(10);
+                }
+                if (Input.GetKeyDown(KeyCode.U))
+                {
+                    skillPoints -= 1;
+                    playerInfo.ChangeDamageBonus(1);
+                }
             }
         }
     }
@@ -56,6 +62,6 @@ public class PlayerSkillSystem : MonoBehaviour
 
     public void IncreaseSkillPoints(int points)
     {
-        SkillPoints += points;
+        skillPoints += points;
     }
 }
