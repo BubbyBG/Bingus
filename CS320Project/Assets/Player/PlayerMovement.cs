@@ -46,6 +46,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask noCollideWith;
     private float inputForward, inputSideways;
 
+    private float footstep_sound_delay;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +62,7 @@ public class PlayerControl : MonoBehaviour
         jumpTimer = 0f;
         snapDistance = 0.1f;
         playerController.excludeLayers = noCollideWith; //LayerMask.GetMask("Interactive");
+        footstep_sound_delay = 0f;
     }
 
     // Update is called once per frame
@@ -145,6 +147,18 @@ public class PlayerControl : MonoBehaviour
         
 
         playerController.Move(currentVelocity * Time.deltaTime); //move player according to current velocity vector
+
+        
+
+        if((inputForward != 0 || inputSideways != 0) && footstep_sound_delay <= 0 && onGround) {
+            
+            FindAnyObjectByType<AudioManager>().Play("footstep");
+            footstep_sound_delay = 120f;
+
+        }
+        else {
+            footstep_sound_delay -= 300f * Time.deltaTime;
+        }
 
         //Player and camera rotation
         cameraAngle -= mouseY * Time.deltaTime;
